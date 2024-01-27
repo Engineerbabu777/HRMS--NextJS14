@@ -21,7 +21,7 @@ export default function NestedRecruitmentOptions() {
       <SingleChoice
         Text={'Candidates'}
         Icon={HiUsers}
-        pathname={'recruitment/candidates'}
+        pathname={'/recruitment/candidates'}
         nested
         active={pathname === '/recruitment/candidates'}
       />

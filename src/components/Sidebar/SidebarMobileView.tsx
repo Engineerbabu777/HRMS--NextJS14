@@ -1,4 +1,4 @@
-'use client';
+'use client'
 import React from 'react'
 import { RiHomeHeartLine } from 'react-icons/ri'
 import { MdAdminPanelSettings } from 'react-icons/md'
@@ -10,21 +10,30 @@ import { HiUser } from 'react-icons/hi'
 import { FaAngleRight } from 'react-icons/fa6'
 import SingleChoice from './SingleChoice'
 
-import NestedRecruitmentOptions from './NestedRecuritmentOptions';
+import NestedRecruitmentOptions from './NestedRecuritmentOptions'
 
-import {usePathname} from 'next/navigation';
-import SidebarMobileView from './SidebarMobileView';
+import { usePathname } from 'next/navigation'
 
-type Props = {}
+import { useRecoilState } from 'recoil'
+import { SidebarAtom } from '../../recoil/sidebarAtom'
 
-export default function Sidebar ({}: Props) {
-  
-  const pathname = usePathname();
+export default function SidebarMobileView () {
+  const [sidebarState, setSidebarState] = useRecoilState(SidebarAtom)
 
-  return (<>
-  <SidebarMobileView />
-    <aside className='hidden lg:block lg:w-[15vw] border-r-2 border-gray-200'>
-      <SingleChoice Text={'Dashboard'} Icon={RiHomeHeartLine} pathname={'/'} />
+  const pathname = usePathname()
+
+  return (
+    <aside
+      className={`w-full h-screen bg-[#272829] z-[9999] fixed left-0 transition duration-500 
+      ${sidebarState.open ? '  !text-red-500' : ' -translate-x-full  '}
+      `}
+    >
+      <SingleChoice
+        Text={'Dashboard'}
+        Icon={RiHomeHeartLine}
+        pathname={'/'}
+        active={pathname === '/'}
+      />
 
       <SingleChoice
         Text={'HR Admin'}
@@ -67,7 +76,5 @@ export default function Sidebar ({}: Props) {
       {/* THIS IS TWO NESTED OPTIONS FOR RECUIRTMENTS! */}
       <NestedRecruitmentOptions />
     </aside>
-  </>
-
   )
 }

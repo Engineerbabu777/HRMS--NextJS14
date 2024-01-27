@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import Header from '@/components/Header/Header'
 import Sidebar from '@/components/Sidebar/Sidebar'
+import RecoilProvider from '@/providers/RecoilProvider'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -18,18 +19,20 @@ export default function RootLayout ({
 }>) {
   return (
     <html lang='en'>
-      <body className={inter.className}>
-        {/* HEADER COMPONENT! */}
-        <Header />
+      <RecoilProvider>
+        <body className={inter.className}>
+          {/* HEADER COMPONENT! */}
+          <Header />
 
-        <section className='flex h-[calc(100vh-52px)]'>
-          {/* SIDEBAR! */}
-          <Sidebar />
+          <section className='flex h-[calc(100vh-52px)]'>
+            {/* SIDEBAR! */}
+            <Sidebar />
 
-          {/* MAIN COMPONENT! */}
-          <main className='grow'>{children}</main>
-        </section>
-      </body>
+            {/* MAIN COMPONENT! */}
+            <main className='grow'>{children}</main>
+          </section>
+        </body>
+      </RecoilProvider>
     </html>
   )
 }
