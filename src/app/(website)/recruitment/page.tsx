@@ -1,30 +1,21 @@
-import BottomLeftSection from '@/components/recruitment/components/BottomLeftSection'
-import TopLeftHeader from '@/components/recruitment/components/TopLeftHeader'
+import TopDashboardHeader from '@/components/recruitment/components/TopDashboardHeader'
 import React from 'react'
-
+import MiddleDashboardSection from '../../../components/recruitment/components/MiddleDashboardSection'
+import BottomDashboardSection from '../../../components/recruitment/components/BottomDashboardSection'
 type Props = {}
 
-export default function page ({}: Props) {
+export default function Page ({}: Props) {
   return (
     <>
-      <section className='border-2 border-red-500 flex h-full p-2'>
-        {/* SIDE LEFT! */}
-        <div className='border-blue-500 border-2 h-full w-[75%] p-1'>
-          {/* TOP! */}
-          <TopLeftHeader />
+      <section className='flex flex-col gap-6 h-[calc(100vh-52px)] p-2 bg-gray-100'>
+        {/* TOP SECTION HEADER! */}
+        <TopDashboardHeader />
 
-          {/* BOTTOM! */}
-          <BottomLeftSection />
-        </div>
+        {/* MIDDLE SECTION! */}
+        <MiddleDashboardSection />
 
-        {/* SIDE RIGHT! */}
-        <div className='border-2 border-green-500 h-full w-[25%]'>
-          {/* TOP! */}
-
-          {/* MIDDLE! */}
-
-          {/* BOTTOM! */}
-        </div>
+        {/* LOWER SECTION! */}
+        <BottomDashboardSection />
       </section>
     </>
   )
