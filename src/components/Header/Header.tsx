@@ -49,5 +49,5 @@ export default function Header () {
 }
 
 function Line () {
-  return <div className='w-1 h-[52px] bg-gray-100 hidden md:block' />
+  return <div className='w-[2px] h-[52px] bg-gray-100 hidden md:block' />
 }
