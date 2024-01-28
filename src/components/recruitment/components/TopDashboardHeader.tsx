@@ -7,7 +7,7 @@ export default function TopDashboardHeader () {
     <>
       <section className='flex justify-between items-center h-[90px]'>
         {/* TEXT! */}
-        <h2 className='text-[#1273eb] text-3xl font-semibold tracking-wider pl-2'>
+        <h2 className='text-[#1273eb] text-3xl font-bold tracking-wider pl-2'>
           Dashboard
         </h2>
         <div className='flex gap-6 items-center'>

@@ -20,7 +20,7 @@ function Left () {
     <>
       <div className='bg-white  flex-grow  rounded-md shadow-lg py-3 px-2 overflow-hidden'>
         {/* TOP TEXT! */}
-        <h2 className='text-black font-semibold tracking-wider'>
+        <h2 className='font-bold text-xl '>
           Hiring Pipeline
         </h2>
       </div>
@@ -33,7 +33,7 @@ function Middle () {
     <>
       <div className='bg-white  flex-grow  flex flex-col gap-2 rounded-md shadow-lg py-3 px-2 overflow-hidden'>
         {/* TOP TEXT! */}
-        <h2 className='text-black font-semibold tracking-wider'>
+        <h2 className='font-bold text-xl '>
           Interview Candidates
         </h2>
 
@@ -45,14 +45,14 @@ function Middle () {
             position={'CEO Of Tesla'}
           />
           <EachSingleCandidate
-            name={'Elon Musk'}
-            interviewDate='Today'
-            position={'CEO Of Tesla'}
+            name={'Mark Zuckerburg'}
+            interviewDate='Tomorrow'
+            position={'CEO Of Meta'}
           />
           <EachSingleCandidate
-            name={'Elon Musk'}
-            interviewDate='Today'
-            position={'CEO Of Tesla'}
+            name={'Jeff Bezoss'}
+            interviewDate='1 Dec 2022'
+            position={'CEO Of Amazon'}
           />
         </div>
 
@@ -65,21 +65,23 @@ function Middle () {
   )
 }
 
-function EachSingleCandidate ({
+export function EachSingleCandidate ({
   name,
   position,
-  interviewDate
+  interviewDate,
+  noBorder=false
 }: {
   name: string,
   position: string,
-  interviewDate: string
+  interviewDate: string,
+  noBorder:boolean
 }) {
   return (
     <>
-      <div className='flex items-center px-2 border-b-2 border-gray-100 py-2 hover:opacity-50 cursor-pointer translate-all'>
+      <div className={`flex items-center px-2 ${!noBorder ?"border-b-2 border-gray-100":""}  py-2 hover:opacity-50 cursor-pointer translate-all`}>
         <div className='flex flex-col'>
           {/* NAME! */}
-          <span className='text-lg'>{name}</span>
+          <span className='text-lg font-[500]'>{name}</span>
 
           {/* ROLE! */}
           <span className='text-[#8e8e8e] text-xs'>{position}</span>
@@ -95,8 +97,27 @@ function Right () {
   return (
     <>
       <section className='bg-white max-w-[20vw] flex-grow rounded-md shadow-lg py-3 px-2 overflow-hidden'>
-        hello
+        {/* HEADING! */}
+         <div className="flex justify-between items-center">
+           <div className="flex flex-col">
+            <h2  className="font-bold text-xl ">Candidates</h2>
+            <span className="text-sm text-[#8e8e8e] -mt-1">Recent Candidates</span>
+           </div>
+           <div className="underline text-[#1273eb] font-[500]">
+            View All
+           </div>
+         </div>
+
+        {/* NAMES! */}
+        <div className="mt-[5%] flex flex-col gap-2">
+          <EachSingleCandidate name={"Mark Wood"} interviewDate={"14 Dec 2022"}/>
+          <EachSingleCandidate name={"Dice Lilly"} interviewDate={"17 Dec 2029"}/>
+          <EachSingleCandidate name={"Joseph Kin"} interviewDate={"21 Dec 2027"}/>
+          <EachSingleCandidate name={"Darren Brown"} interviewDate={"61 Dec 2025"} noBorder/>
+        </div>
       </section>
     </>
   )
 }
+
+
