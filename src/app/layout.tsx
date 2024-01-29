@@ -4,6 +4,7 @@ import './globals.css'
 import Header from '@/components/Header/Header'
 import Sidebar from '@/components/Sidebar/Sidebar'
 import RecoilProvider from '@/providers/RecoilProvider'
+import NextUIProvider from '@/providers/NextUIProvider'
 
 const inter = Nunito({ subsets: ['latin'] })
 
@@ -20,18 +21,21 @@ export default function RootLayout ({
   return (
     <html lang='en'>
       <RecoilProvider>
-        <body className={inter.className}>
-          {/* HEADER COMPONENT! */}
-          <Header />
+        <NextUIProvider>
+          {/* MAIN BODY */}
+          <body className={inter.className}>
+            {/* HEADER COMPONENT! */}
+            <Header />
 
-          <section className='flex h-[calc(100vh-52px)]'>
-            {/* SIDEBAR! */}
-            <Sidebar />
+            <section className='flex h-[calc(100vh-52px)]'>
+              {/* SIDEBAR! */}
+              <Sidebar />
 
-            {/* MAIN COMPONENT! */}
-            <main className='grow'>{children}</main>
-          </section>
-        </body>
+              {/* MAIN COMPONENT! */}
+              <main className='grow'>{children}</main>
+            </section>
+          </body>
+        </NextUIProvider>
       </RecoilProvider>
     </html>
   )

@@ -1,6 +1,9 @@
+'use client';
+
 import React from 'react'
 import Image from 'next/image'
 import { MdAdd } from 'react-icons/md'
+import Link  from 'next/link'
 
 type Props = {
   jobs?: boolean,
@@ -33,10 +36,13 @@ export default function NothingInfo ({ jobs, candidates }: Props) {
           </p>
 
           {/* BTN TO CREATE! */}
-          <button className='flex gap-1 min-w-[200px] hover:opacity-50 rounded-md text-white  px-3 bg-[#1273eb] h-[32px] items-center justify-center '>
+          <Link
+            href={'/recruitment/jobs/create-job'}
+            className='flex gap-1 min-w-[200px] hover:opacity-50 rounded-md text-white  px-3 bg-[#1273eb] h-[32px] items-center justify-center '
+          >
             <MdAdd className='w-4 h-4' />
-            <span className=''>Create Candidate</span>
-          </button>
+            <span className=''>Create Job</span>
+          </Link>
         </section>
       )}
 
@@ -63,10 +69,13 @@ export default function NothingInfo ({ jobs, candidates }: Props) {
           </p>
 
           {/* BTN TO CREATE! */}
-          <button className='flex gap-1 min-w-[200px] hover:opacity-50 rounded-md text-white  px-3 bg-[#1273eb] h-[32px] items-center justify-center '>
+          <Link
+            href={'/recruitment/jobs/create-job'}
+            className='flex gap-1 min-w-[200px] hover:opacity-50 rounded-md text-white  px-3 bg-[#1273eb] h-[32px] items-center justify-center '
+          >
             <MdAdd className='w-4 h-4' />
             <span className=''>Create Candidate</span>
-          </button>
+          </Link>
         </div>
       )}
     </>
