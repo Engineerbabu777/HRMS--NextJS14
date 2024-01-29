@@ -60,12 +60,12 @@ function SingleJob(
 
   return(<>
         <div className={`flex items-center px-2 ${!noBorder ?"border-b-2 border-gray-100":""}  py-2 hover:opacity-50 cursor-pointer translate-all`}>
-        <div className='flex flex-col'>
+        <div className='flex flex-col flex-1 '>
           {/* NAME! */}
-          <span className='text-lg font-[500]'>{name}</span>
+          <span className='text-lg font-[500] line-clamp-1 '>{name}</span>
 
           {/* VIEWS && APPLIED CANDIDATES! */}
-          <EachJobReport view={views} applied={applied} location={location}/>
+          <EachJobReport views={views} applied={applied} location={location}/>
          
         </div>
         {/* DATE! */}

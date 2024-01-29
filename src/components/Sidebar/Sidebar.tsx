@@ -23,7 +23,8 @@ export default function Sidebar ({}: Props) {
 
   return (<>
   <SidebarMobileView />
-    <aside className='hidden lg:block lg:w-[15vw] border-r-2 border-gray-200'>
+    <aside className='hidden lg:block lg:w-[15vw] border-r-2 border-gray-200 '>
+      {/* <div className="w-full h-full"> */}
       <SingleChoice Text={'Dashboard'} Icon={RiHomeHeartLine} pathname={'/'} />
 
       <SingleChoice
@@ -66,6 +67,7 @@ export default function Sidebar ({}: Props) {
       />
       {/* THIS IS TWO NESTED OPTIONS FOR RECUIRTMENTS! */}
       <NestedRecruitmentOptions />
+      {/* </div> */}
     </aside>
   </>
 
