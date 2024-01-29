@@ -4,6 +4,7 @@ import * as yup from 'yup';
 
 
 
+
 // VALIDATION SCHEMA FOR JOB!
 export const validationSchemaForJob = yup.object({
   name: yup.string().trim().required('Name is required'),
