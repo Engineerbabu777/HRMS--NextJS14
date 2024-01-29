@@ -5,6 +5,7 @@ import Header from '@/components/Header/Header'
 import Sidebar from '@/components/Sidebar/Sidebar'
 import RecoilProvider from '@/providers/RecoilProvider'
 import NextUIProvider from '@/providers/NextUIProvider'
+import {StrictMode} from 'react';
 
 const inter = Nunito({ subsets: ['latin'] })
 
