@@ -70,7 +70,7 @@ export default function NothingInfo ({ jobs, candidates }: Props) {
 
           {/* BTN TO CREATE! */}
           <Link
-            href={'/recruitment/jobs/create-job'}
+            href={'/recruitment/candidates/create-candidate'}
             className='flex gap-1 min-w-[200px] hover:opacity-50 rounded-md text-white  px-3 bg-[#1273eb] h-[32px] items-center justify-center '
           >
             <MdAdd className='w-4 h-4' />

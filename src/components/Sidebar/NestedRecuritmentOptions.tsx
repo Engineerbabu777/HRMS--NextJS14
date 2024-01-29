@@ -16,14 +16,14 @@ export default function NestedRecruitmentOptions() {
         Icon={IoBriefcaseOutline}
         pathname={'/recruitment/jobs'}
         nested
-        active={pathname === '/recruitment/jobs'}
+        active={pathname.split('/').includes('jobs')}
       />
       <SingleChoice
         Text={'Candidates'}
         Icon={HiUsers}
         pathname={'/recruitment/candidates'}
         nested
-        active={pathname === '/recruitment/candidates'}
+        active={pathname.split('/').includes('candidates')}
       />
       </>)
 }
