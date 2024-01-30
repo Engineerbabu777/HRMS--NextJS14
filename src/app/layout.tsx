@@ -6,6 +6,7 @@ import Sidebar from '@/components/Sidebar/Sidebar'
 import RecoilProvider from '@/providers/RecoilProvider'
 import NextUIProvider from '@/providers/NextUIProvider'
 import {StrictMode} from 'react';
+import ToasterProvider from '@/providers/ToasterProvider'
 
 const inter = Nunito({ subsets: ['latin'] })
 
@@ -25,6 +26,9 @@ export default function RootLayout ({
         <NextUIProvider>
           {/* MAIN BODY */}
           <body className={inter.className}>
+          <ToasterProvider>
+            <>
+
             {/* HEADER COMPONENT! */}
             <Header />
 
@@ -35,6 +39,10 @@ export default function RootLayout ({
               {/* MAIN COMPONENT! */}
               <main className='grow'>{children}</main>
             </section>
+            </>
+
+          </ToasterProvider>
+
           </body>
         </NextUIProvider>
       </RecoilProvider>

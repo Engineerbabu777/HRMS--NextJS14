@@ -14,7 +14,7 @@ export type JobTypes = {
 export type CandidateTypes = {
     name: string,
     imageURL: string,
-    mobileNo: number,
+    phoneNumber: number,
     location: string,
     email: string,
     description: string,

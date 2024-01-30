@@ -1,15 +1,11 @@
 
 import * as yup from 'yup';
 
-
-
-
-
 // VALIDATION SCHEMA FOR JOB!
 export const validationSchemaForJob = yup.object({
   name: yup.string().trim().required('Name is required'),
   headCount: yup.number().min(1).required('HeadCount is required'),
-  location: yup.number().min(1).required('Location is required'),
+  location: yup.string().required('Location is required'),
   description: yup.string().trim().required('Description is required'),
   contractDetails: yup
     .string()

@@ -4,13 +4,17 @@ import { FaArrowLeftLong } from 'react-icons/fa6'
 import { Input } from '@nextui-org/react'
 import { FaRegEdit } from 'react-icons/fa'
 import { useState } from 'react'
-import { useFormik } from 'formik'
+import { useFormik,useFormikContext } from 'formik'
 import { validationSchemaForCandidate } from '@/utils/validateCandidate'
 import FormErrors from '@/components/recruitment/shared/FormErrors'
+import { uploadImageToCloudinary } from '@/utils/uploadImageToCloudinary'
+import {CandidateTypes} from '@/types';
+import {createCandidate} from '@/actions/candidate/create-candidate';
 
 type Props = {}
 
 export default function Page ({}: Props) {
+
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -20,9 +24,21 @@ export default function Page ({}: Props) {
       description: '',
       phoneNumber: 0
     },
-    onSubmit: values => {},
+    onSubmit:  async (values, actions) => {
+           // WILL SUBMIT THIS FORM AND SAVE DATA TO BACKEND!
+          const response = await createCandidate(values);
+          // IF THE USER WAS SUCCESSFULLY SUBMITTED!
+          if(response.status === 200){
+            formik.resetForm(); // Reset the form after successful submission.
+          }
+    },
     validationSchema: validationSchemaForCandidate
   })
+
+  const handleImageChange = async(event:React.ChangeEvent<HTMLInputElement>) => {
+    const response = await uploadImageToCloudinary(event);
+    formik.setFieldValue('imageURL',response?.secure_url);
+  } 
 
   return (
     <>
@@ -43,13 +59,19 @@ export default function Page ({}: Props) {
               {/* IMAGE! */}
               <div className='rounded-full w-[100px] h-[100px] relative'>
                 <img
-                  src={'/elon.jpg'}
+                  src={formik.values.imageURL || '/elon.jpg'}
                   alt='alt-text'
                   className='overflow-hidden w-full h-full rounded-full object-cover'
                 />
-                <div className='w-6 h-6 absolute right-2 bottom-0 bg-[#1273eb] flex items-center justify-center rounded-full'>
+                <label className='w-6 h-6 absolute right-2 bottom-0 bg-[#1273eb] flex items-center justify-center rounded-full cusror-pointer'>
+                  <input onChange={handleImageChange} 
+                         className="hidden" 
+                         name="imageURL"
+                         type="file" 
+                         accept={".jpg, .jpeg, .png, image/jpg, image/jpeg, image/png, .webp"}
+                  />
                   <FaRegEdit className='w-3 h-3 text-white ' />
-                </div>
+                </label>
               </div>
             </div>
 

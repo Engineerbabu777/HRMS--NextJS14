@@ -4,9 +4,9 @@ import { FaArrowLeftLong } from 'react-icons/fa6'
 import { Input } from '@nextui-org/react'
 import React, { useState } from 'react'
 import { useFormik } from 'formik'
-import * as yup from 'yup'
 import FormErrors from '@/components/recruitment/shared/FormErrors'
 import { validationSchemaForJob } from '@/utils/validateJob'
+import {createJob} from '@/actions/job/create-job';
 
 type Props = {}
 
@@ -14,16 +14,21 @@ export default function Page ({}: Props) {
   const formik = useFormik({
     initialValues: {
       name: '',
-      location: null,
+      location: '',
       minSalary: 0,
       maxSalary: 0,
       headCount: 0,
       description: '',
       contractDetails: ''
     },
-    onSubmit: () => {
-      // SUBMIT FORM!
-      console.log('Form SUBMITTED!')
+    onSubmit: async(values,actions) => {
+      // WILL SUBMIT THIS FORM AND SAVE DATA TO BACKEND!
+        // WILL SUBMIT THIS FORM AND SAVE DATA TO BACKEND!
+        const response = await createJob(values);
+        // IF THE USER WAS SUCCESSFULLY SUBMITTED!
+        if(response.status === 200){
+          formik.resetForm(); // Reset the form after successful submission.
+        }
     },
     validationSchema: validationSchemaForJob
   })
@@ -174,13 +179,11 @@ export default function Page ({}: Props) {
                 )}
               </label>
             </div>
-            <div className='flex items-center justify-end'>
-              <button
-                className='bg-[#1273eb] text-white rounded-md w-[200px] h-[32px] flex items-center justify-center'
-                type='submit'
-              >
-                Submit
-              </button>
+            <div className='flex items-center justify-end  w-[75%]'>
+            <div className="flex justify-end items-center gap-4 max-w-[75%]">
+              <button className="text-[#1273eb] font-semibold underline w-[100px] rounded-full h-[32px] hover:text-black hover:underline-none hover:bg-white" type="reset">Reset</button>
+              <button className="bg-[#1273eb] text-white hover:opacity-50 rounded-full w-[100px] h-[32px]" type="submit">Save</button>
+            </div>
             </div>
           </form>
         </div>
