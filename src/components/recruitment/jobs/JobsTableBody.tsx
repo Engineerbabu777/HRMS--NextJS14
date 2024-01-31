@@ -27,7 +27,7 @@ export default function JobsTableBody ({ data }: Props) {
               <td className=''>{job?.createdAt || 'Today'}</td>
               <td className=''>Misha Sohail</td>
               <td className='flex gap-1 items-center mt-2'>
-                <JobTableActions />
+                <JobTableActions jobId={job._id}/>
               </td>
             </tr>
           </>
