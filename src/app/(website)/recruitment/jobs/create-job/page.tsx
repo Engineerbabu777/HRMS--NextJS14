@@ -7,6 +7,7 @@ import { useFormik } from 'formik'
 import FormErrors from '@/components/recruitment/shared/FormErrors'
 import { validationSchemaForJob } from '@/utils/validateJob'
 import {createJob} from '@/actions/job/create-job';
+import toast from 'react-hot-toast';
 
 type Props = {}
 
@@ -17,7 +18,7 @@ export default function Page ({}: Props) {
       location: '',
       minSalary: 0,
       maxSalary: 0,
-      headCount: 0,
+      headCount: '',
       description: '',
       contractDetails: ''
     },
@@ -27,6 +28,7 @@ export default function Page ({}: Props) {
         const response = await createJob(values);
         // IF THE USER WAS SUCCESSFULLY SUBMITTED!
         if(response.status === 200){
+          toast.success("Added!")
           formik.resetForm(); // Reset the form after successful submission.
         }
     },

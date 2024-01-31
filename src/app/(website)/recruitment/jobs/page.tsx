@@ -1,54 +1,62 @@
+// 'use client'
 import NothingInfo from '@/components/recruitment/shared/NothingInfo'
 import React from 'react'
-import Link from 'next/link';
-import {MdAdd} from 'react-icons/md';
+import SearchInput from '@/components/Header/SearchInput'
+import { FaSortDown } from 'react-icons/fa'
+import JobsHeader from '@/components/recruitment/jobs/JobsHeader'
+import JobsTable from '@/components/recruitment/jobs/JobsTable'
+import {useQuery} from '@tanstack/react-query';
+import { fetchJobs } from '@/actions/job/fetch-jobs'
 
 type Props = {}
 
-export default function page ({}: Props) {
+export default async function page ({}: Props) {
+    
+  const data = await fetchJobs();
+
+  console.log(data)
+
   return (
-    <div className='flex flex-col gap-6 h-[calc(100vh-52px)] p-2 bg-gray-100 overflow-auto'>
+    <div className='flex flex-col gap-3 h-[calc(100vh-52px)] p-2 bg-gray-100 overflow-auto scrollbar'>
       {/* IF NO JOBS EXISTS! */}
       {/* <NothingInfo jobs /> */}
 
       {/* IF JOBS EXISTS! */}
       <>
-      {/* HEADER! */}
-       <header className="flex items-center justify-between px-6">
+        {/* HEADER! */}
+        <JobsHeader />
 
-        {/* BTN TO CREATE! */}
-        <Link
-            href={'/recruitment/jobs/create-job'}
-            className='flex gap-1 min-w-[150px] hover:opacity-50  rounded-md text-white  px-3 bg-[#1273eb] 
-            h-[40px] items-center justify-center '
-          >
-            <MdAdd className='w-4 h-4' />
-            <span className=''>Create Job</span>
-          </Link>
+        {/* TABLE! */}
+        <section className='flex-1 bg-white p-3 rounded-md border w-full '>
+          {/* HEADER! */}
+          <ContainerHeader />
 
-
-        {/* LEFT END! */}
-        <div className="flex gap-2 items-center">
-                  {/* BOARD! */}
-        <Link
-            href={'/recruitment/jobs/create-job'}
-            className='flex gap-1 min-w-[150px] hover:opacity-50 rounded-md text-[#1273eb]  px-3 bg-white h-[40px] items-center justify-center border border-[#1273eb] '
-          >
-            <span className=''>Board</span>
-          </Link>
-
-                 {/* LIST! */}
-        <Link
-            href={'/recruitment/jobs/create-job'}
-            className='flex gap-1 min-w-[150px] hover:opacity-50  rounded-md text-white  px-3 bg-[#1273eb] h-[40px] items-center justify-center '
-          >
-            <span className=''>List</span>
-          </Link>
-        </div>
-
-       </header>
-      
+          {/* TABLE! */}
+          <JobsTable data={data?.jobs}/>
+        </section>
       </>
     </div>
+  )
+}
+
+function ContainerHeader () {
+  return (
+    <>
+      <header className='flex items-center justify-between'>
+        {/* SEARCH! */}
+        <div className='flex-1 flex gap-2 items-center'>
+          <h2 className='font-semibold '>Jobs List</h2>
+          <SearchInput />
+        </div>
+
+        {/* ACTIONS! */}
+        <div className='flex items-center gap-2 justify-center '>
+          <button className='text-[#1273eb] font-semibold p-2 rounded-md flex gap-2 items-center border border-[#1273eb]'>
+            <span>Bulk Actions</span>
+            <FaSortDown className='w-4 h-4 -mt-1' />
+          </button>
+        </div>
+      </header>
+    </>
   )
 }

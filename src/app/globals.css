@@ -3,3 +3,49 @@
 @tailwind utilities;
 
 
+th {
+    padding: 10px;
+
+}
+
+td {
+    padding: 10px;
+    max-width: 120px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+}
+
+th,
+thead,
+tr,
+td {
+    text-align: start;
+    border-collapse: collapse;
+}
+
+td {
+    min-width: 100px;
+}
+
+
+/* width */
+.scrollbar::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  .scrollbar::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  /* Handle */
+  .scrollbar::-webkit-scrollbar-thumb {
+    background: #1273eb;
+  }
+  
+  /* Handle on hover */
+  .scrollbar::-webkit-scrollbar-thumb:hover {
+    opacity:0.5;
+  }
