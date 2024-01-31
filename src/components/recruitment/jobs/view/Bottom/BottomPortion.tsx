@@ -3,6 +3,9 @@
 import React from 'react'
 import CandidatesTabView from './CandidatesTabView'
 import SummaryTabView from './SummaryTabView'
+import AttachmentsView from './AttachmentsView'
+import ReportsView from './Reports/ReportsView'
+import SourcingView from './Sourcing/SourcingView'
 
 type Props = {}
 
@@ -13,6 +16,7 @@ const tabsNames = [
   'Reports',
   'Sourcing'
 ]
+
 export default function BottomPortion ({}: Props) {
   const [activeTab, setActiveTab] = React.useState(0)
 
@@ -46,9 +50,9 @@ export default function BottomPortion ({}: Props) {
           {/* ACCORDING TO TAB DISPLAY DATA! */}
           {activeTab === 0 && <CandidatesTabView />}
           {activeTab === 1 && <SummaryTabView />}
-          {activeTab === 2 && <div>Attachments</div>}
-          {activeTab === 3 && <div>Reports</div>}
-          {activeTab === 4 && <div>Sourcing</div>}
+          {activeTab === 2 && <AttachmentsView />}
+          {activeTab === 3 && <ReportsView />}
+          {activeTab === 4 && <SourcingView />}
         </div>
       </div>
     </>
