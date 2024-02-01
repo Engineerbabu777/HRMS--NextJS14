@@ -12,9 +12,9 @@ const jobSchema = new mongoose.Schema(
     maxSalary: { type: Number, required: true },
     minSalary: { type: Number, required: true },
     jobStatus: {
-      type: Number,
-      required: true,
-      enum: ['active', 'onhold', 'lost']
+      type: String,
+      enum: ['active', 'onhold', 'lost'],
+      default:'onhold'
     }
   },
   {

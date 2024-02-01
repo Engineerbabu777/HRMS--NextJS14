@@ -6,8 +6,9 @@ import React, { useState } from 'react'
 import { useFormik } from 'formik'
 import FormErrors from '@/components/recruitment/shared/FormErrors'
 import { validationSchemaForJob } from '@/utils/validateJob'
-import {createJob} from '@/actions/job/create-job';
-import toast from 'react-hot-toast';
+import { createJob } from '@/actions/job/create-job'
+import toast from 'react-hot-toast'
+import { revalidatePath } from 'next/cache'
 
 type Props = {}
 
@@ -18,19 +19,19 @@ export default function Page ({}: Props) {
       location: '',
       minSalary: 0,
       maxSalary: 0,
-      headCount: '',
+      headCount: 0,
       description: '',
       contractDetails: ''
     },
-    onSubmit: async(values,actions) => {
+    onSubmit: async (values, actions) => {
       // WILL SUBMIT THIS FORM AND SAVE DATA TO BACKEND!
-        // WILL SUBMIT THIS FORM AND SAVE DATA TO BACKEND!
-        const response = await createJob(values);
-        // IF THE USER WAS SUCCESSFULLY SUBMITTED!
-        if(response.status === 200){
-          toast.success("Added!")
-          formik.resetForm(); // Reset the form after successful submission.
-        }
+      // WILL SUBMIT THIS FORM AND SAVE DATA TO BACKEND!
+      const response = await createJob(values)
+      // IF THE USER WAS SUCCESSFULLY SUBMITTED!
+      if (response.status === 200) {
+        toast.success('Added!')
+        formik.resetForm() // Reset the form after successful submission.
+      }
     },
     validationSchema: validationSchemaForJob
   })
@@ -51,7 +52,10 @@ export default function Page ({}: Props) {
           {/* FORM! */}
           <form
             className='mt-4 flex flex-col gap-6 px-10 '
-            onSubmit={formik.handleSubmit}
+            onSubmit={(event: any) => {
+              event.preventDefault();
+              formik.handleSubmit();
+            }}
           >
             <div className='flex gap-2 justify-between items-center'>
               <label className='flex flex-col gap-1 flex-1'>
@@ -182,10 +186,20 @@ export default function Page ({}: Props) {
               </label>
             </div>
             <div className='flex items-center justify-end  w-[75%]'>
-            <div className="flex justify-end items-center gap-4 max-w-[75%]">
-              <button className="text-[#1273eb] font-semibold underline w-[100px] rounded-full h-[32px] hover:text-black hover:underline-none hover:bg-white" type="reset">Reset</button>
-              <button className="bg-[#1273eb] text-white hover:opacity-50 rounded-full w-[100px] h-[32px]" type="submit">Save</button>
-            </div>
+              <div className='flex justify-end items-center gap-4 max-w-[75%]'>
+                <button
+                  className='text-[#1273eb] font-semibold underline w-[100px] rounded-full h-[32px] hover:text-black hover:underline-none hover:bg-white'
+                  type='reset'
+                >
+                  Reset
+                </button>
+                <button
+                  className='bg-[#1273eb] text-white hover:opacity-50 rounded-full w-[100px] h-[32px]'
+                  type='submit'
+                >
+                  Save
+                </button>
+              </div>
             </div>
           </form>
         </div>

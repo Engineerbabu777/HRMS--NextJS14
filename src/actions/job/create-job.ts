@@ -6,6 +6,7 @@
 import {DBConnect} from '@/database/DBConnect';
 import {JobTypes} from '@/types';
 import {Job} from '@/models/job.model';
+import {revalidatePath} from 'next/cache';
 
 export const createJob = async(data:JobTypes) => {
 
@@ -17,6 +18,8 @@ export const createJob = async(data:JobTypes) => {
 
     // SAVE JOB TO DATABASE!
     const newJob = await Job.create(body);
+
+    revalidatePath('/recruitment/jobs')
 
     // RETURN BACK OK RESPONSE!
     return {

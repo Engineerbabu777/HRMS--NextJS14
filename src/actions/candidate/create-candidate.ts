@@ -3,6 +3,7 @@
 import {DBConnect} from '@/database/DBConnect';
 import {CandidateTypes} from '@/types';
 import {Candidate} from '@/models/candidate.model';
+import {revalidatePath} from 'next/cache';
 
 export const createCandidate = async(data:CandidateTypes) => {
 
@@ -14,6 +15,9 @@ export const createCandidate = async(data:CandidateTypes) => {
 
     // SAVE CANDIDATE TO DATABASE!
     const newCandidate = await Candidate.create(body);
+
+    revalidatePath('/recruitment/jobs')
+
 
     // RETURN BACK OK RESPONSE!
     return {

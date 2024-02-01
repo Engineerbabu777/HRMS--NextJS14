@@ -9,6 +9,8 @@ const candidateSchema = new mongoose.Schema({
   location: { type: String, required: true },
   description: { type: String, required: true, minLength: 10 },
   phoneNumber: { type: String, required: true }
+},{
+  timestamps:true,
 })
 
 // EXPORTING CANDIDATE MODEL!
