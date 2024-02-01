@@ -10,7 +10,10 @@ type Props = {
   candidates?: boolean
 }
 
-export default function NoAttachmentView ({ jobs, candidates }: Props) {
+export default function NoAttachmentView ({
+  jobs = false,
+  candidates = false
+}: Props) {
   return (
     <>
       {/* FOR JOBS! */}
@@ -19,7 +22,10 @@ export default function NoAttachmentView ({ jobs, candidates }: Props) {
         {/* IMAGE! */}
 
         {/* SMALL HEADING! */}
-        <h2 className='font-bold text-xl -mt-2'>No attachments yet!</h2>
+        <h2 className='font-bold text-xl -mt-2'>
+          {jobs && 'No attachments yet!'}
+          {candidates && 'No resume added yet'}
+        </h2>
 
         {/* BTN TO CREATE! */}
         <Link

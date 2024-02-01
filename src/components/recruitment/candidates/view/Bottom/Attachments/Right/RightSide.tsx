@@ -1,40 +1,16 @@
-import React from 'react'
-import SearchInput from '@/components/Header/SearchInput'
-import Link from 'next/link'
-import { MdAdd } from 'react-icons/md'
-import { FaFilePdf } from 'react-icons/fa'
-import { BsThreeDotsVertical } from 'react-icons/bs'
-import { useState } from 'react'
 import NoAttachmentView from '@/components/recruitment/shared/jobs/NoAttachmentsView'
+import React from 'react'
+import { BsThreeDotsVertical } from 'react-icons/bs'
+import { FaFilePdf } from 'react-icons/fa6'
 
 type Props = {}
 
-export default function Main ({}: Props) {
-  const [open, setOpen] = useState(false)
+export default function RightSide ({}: Props) {
   return (
     <>
-      {/* NO ATTACHMENTS VIEW! */}
-      {/* <NoAttachmentView candidates/> */}
-
-      {/* IF NAY ATTACHMENTS THE VIEW WILL BE DIFFERENT! */}
-      <section className='w-full flex h-full flex-1 overflow-auto scrollbar bg-white flex-col p-4 gap-4'>
-        {/* HEADER! */}
-        <header className='flex items-center justify-between '>
-          <div className='w-full'>
-            <SearchInput />
-          </div>
-          {/* BTN TO UPLOAD FILES! */}
-          <Link
-            href={'/recruitment/jobs/create-job'}
-            className='flex gap-1 min-w-[200px] hover:opacity-50 rounded-md text-white  px-3 bg-[#1273eb] h-[40px] items-center justify-center '
-          >
-            <MdAdd className='w-4 h-4' />
-            <span className=''>Upload Files</span>
-          </Link>
-        </header>
-
-        {/* FILES! */}
-        <div className='flex-1 flex flex-col'>
+      <section className='w-full  flex h-full flex-1 overflow-auto scrollbar bg-white flex-col  gap-4'>
+        {/* IF WE HAVE FILES! */}
+        <div className=' flex flex-col'>
           <h2 className='text-lg font-bold'>Uploaded files</h2>
 
           <section className='flex flex-col gap-2'>
@@ -54,13 +30,13 @@ export default function Main ({}: Props) {
                   <BsThreeDotsVertical
                     className='w-6 h-6 text-[#1273eb] cursor-pointer'
                     onClick={() => {
-                      setOpen(!open)
+                      // setOpen(!open)
                     }}
                   />
-                  {open && (
+                  {false && (
                     <div
                       className={`absolute w-[200px] rounded-md border bg-white top-0 right-6 transition-all duration-500 ${
-                        open ? 'opacity-1' : 'opacity-0'
+                        false ? 'opacity-1' : 'opacity-0'
                       } `}
                     >
                       <p className='px-2 border-b border-gray-100 py-2 hover:opacity-50 cursor-pointer'>
@@ -76,8 +52,12 @@ export default function Main ({}: Props) {
             </div>
           </section>
         </div>
+
+        {/* WILL SHOW! */}
+        <div className='flex-1'>
+          <NoAttachmentView />
+        </div>
       </section>
-      
     </>
   )
 }
