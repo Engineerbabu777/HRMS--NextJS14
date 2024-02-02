@@ -5,11 +5,19 @@ import { MdAdd } from 'react-icons/md'
 import { FaFilePdf } from 'react-icons/fa'
 import { BsThreeDotsVertical } from 'react-icons/bs'
 import { useState } from 'react'
+import { uploadImageToCloudinary } from '@/utils/uploadImageToCloudinary'
 
 type Props = {}
 
 export default function AttachmentsView ({}: Props) {
   const [open, setOpen] = useState(false)
+
+  const handleUploadFile = async (event:React.ChangeEvent<HTMLInputElement>) => {
+    if(event?.target?.files?.[0]){
+        const response = await uploadImageToCloudinary(event);
+        console.log({response});
+    }
+  }
   return (
     <>
       {/* NO ATTACHMENTS VIEW! */}
@@ -20,16 +28,16 @@ export default function AttachmentsView ({}: Props) {
         {/* HEADER! */}
         <header className='flex items-center justify-between '>
           <div className='w-full'>
-            <SearchInput />
+            <SearchInput placeholder={"Search..."}/>
           </div>
           {/* BTN TO UPLOAD FILES! */}
-          <Link
-            href={'/recruitment/jobs/create-job'}
+          <label
             className='flex gap-1 min-w-[200px] hover:opacity-50 rounded-md text-white  px-3 bg-[#1273eb] h-[40px] items-center justify-center '
           >
+            <input type="file" className="hidden" onChange={handleUploadFile} multiple={false}/>
             <MdAdd className='w-4 h-4' />
             <span className=''>Upload Files</span>
-          </Link>
+          </label>
         </header>
 
         {/* FILES! */}

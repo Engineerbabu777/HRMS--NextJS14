@@ -9,9 +9,11 @@ import { FaCaretDown } from 'react-icons/fa'
 import RightPart from './RightPart'
 import MiddlePart from './MiddlePart'
 
-type Props = {}
+type Props = {
+  data:any
+}
 
-export default function TopPortion ({}: Props) {
+export default function TopPortion ({data}: Props) {
   return (
     <>
       <div className='flex gap-2 '>
@@ -19,7 +21,7 @@ export default function TopPortion ({}: Props) {
         <BsArrowLeft className='text-[#1273eb]  w-6 h-6' />
 
         {/* MIDDLE SIDE! */}
-        <MiddlePart />
+        <MiddlePart data={data}/>
 
         {/* RIGHT SIDE! */}
          <RightPart />

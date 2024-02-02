@@ -17,11 +17,11 @@ export default function JobsTableBody ({ data }: Props) {
               <th className=''>
                 <input type='checkbox' className='w-4 h-4 ' />
               </th>
-              <td className=''>{job.name}</td>
-              <td className=''>{job.location}</td>
+              <td className=''>{job.jobName}</td>
+              <td className=''>{job.jobLocation}</td>
               <td className=''>{job.headCount}</td>
-              <td className=''>Rs {job.minSalary}</td>
-              <td className=''>Rs {job.maxSalary}</td>
+              <td className=''>Rs {job.minimumSalary}</td>
+              <td className=''>Rs {job.maximumSalary}</td>
               <td className='relative'>
                 <JobsTableStatus jobId={job._id} />
               </td>

@@ -4,17 +4,27 @@ import mongoose from 'mongoose'
 // CANDIDATE SCHEMA!
 const jobSchema = new mongoose.Schema(
   {
-    name: { type: String, required: true },
+    jobName: { type: String, required: true },
     headCount: { type: Number, required: true },
-    location: { type: String, required: true },
-    description: { type: String, required: true },
+    jobLocation: { type: String, required: true },
+    jobDescription: { type: String, required: true },
     contractDetails: { type: String, required: true },
-    maxSalary: { type: Number, required: true },
-    minSalary: { type: Number, required: true },
+    maximumSalary: { type: Number, required: true },
+    minimumSalary: { type: Number, required: true },
     jobStatus: {
       type: String,
       enum: ['active', 'onhold', 'lost'],
-      default:'onhold'
+      default: 'onhold'
+    },
+    remote: { type: String, default: 'no' },
+    officeAddress: { type: String },
+    experienceLevel: { type: String },
+    frequency: { type: String },
+    openDate: { type: Date },
+    closeDate: { type: Date },
+    jobReference: { type: String },
+    attachments:{
+      type:[String]
     }
   },
   {

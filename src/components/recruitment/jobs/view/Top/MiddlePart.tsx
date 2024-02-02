@@ -5,9 +5,11 @@ import { FaDollarSign } from 'react-icons/fa'
 import { GoDotFill } from 'react-icons/go'
 import { FaCaretDown } from 'react-icons/fa'
 
-type Props = {}
+type Props = {
+  data:any
+}
 
-export default function MiddlePart ({}: Props) {
+export default function MiddlePart ({data}: Props) {
   return (
     <>
       <div className='flex gap-4 items-center flex-grow'>
@@ -21,7 +23,7 @@ export default function MiddlePart ({}: Props) {
           {/* NAME+PUBLISHED OR NOT YET! */}
           <div className='flex gap-2 items-center'>
             <h2 className='text-[#1273eb] font-bold text-3xl'>
-              UI UX Designer
+              {data.jobName}
             </h2>
             <p className='bg-[#F3B95F] text-white  text-sm font-semibold rounded-full px-4 py-1'>
               Unpublished
@@ -31,13 +33,13 @@ export default function MiddlePart ({}: Props) {
           {/* LOCATION! */}
           <div className='flex items-center'>
             <MdLocationOn className='w-5 h-5' />
-            <p className='text-xl font-semibold'>Lahore</p>
+            <p className='text-xl font-semibold'>{data.jobLocation}</p>
           </div>
 
           {/* SALARY! */}
           <div className='flex items-center'>
             <FaDollarSign className='w-5 h-5' />
-            <p className='text-xl font-semibold'>Rs 50000 - Rs 75000</p>
+            <p className='text-xl font-semibold'>Rs {data.minimumSalary} - Rs {data.maximumSalary}</p>
           </div>
 
           {/* JOB STATUS */}
