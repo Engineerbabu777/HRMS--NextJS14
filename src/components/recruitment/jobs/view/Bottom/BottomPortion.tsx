@@ -52,7 +52,7 @@ export default function BottomPortion ({data}: Props) {
           {/* ACCORDING TO TAB DISPLAY DATA! */}
           {activeTab === 0 && <CandidatesTabView />}
           {activeTab === 1 && <SummaryTabView data={data}/>}
-          {activeTab === 2 && <AttachmentsView />}
+          {activeTab === 2 && <AttachmentsView data={data}/>}
           {activeTab === 3 && <ReportsView />}
           {activeTab === 4 && <SourcingView />}
         </div>

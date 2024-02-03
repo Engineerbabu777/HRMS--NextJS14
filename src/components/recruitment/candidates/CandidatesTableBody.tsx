@@ -17,15 +17,15 @@ export default function CandidatesTableBody ({ data }: Props) {
               <th className=''>
                 <input type='checkbox' className='w-4 h-4 ' />
               </th>
-              <td className=''>{candidate.name || 'John Doe'}</td>
-              <td className=''>{candidate.reference || 'JA1278'}</td>
-              <td className=''>{candidate.location}</td>
-              <td className=''>
+              <td className='text-sm'>{candidate.name || 'John Doe'}</td>
+              <td className='text-sm'>{candidate.reference || 'JA1278'}</td>
+              <td className='text-sm'>{candidate.location}</td>
+              <td className='text-sm'>
                 {candidate.currentPosition || 'Software Engineer'}
               </td>
-              <td className=''>{candidate.noticePeriod || '26 days'}</td>
-              <td className=''>Rs {candidate.currentSalary || '60,000'}</td>
-              <td className=''>Rs {candidate.expectedSalary || '75,000'}</td>
+              <td className='text-sm'>{candidate.noticePeriod || '26 days'}</td>
+              <td className='text-sm'>Rs {candidate.currentSalary || '60,000'}</td>
+              <td className='text-sm'>Rs {candidate.expectedSalary || '75,000'}</td>
 
               <td className='text-xs font-bold'>
               {candidate.createdAt

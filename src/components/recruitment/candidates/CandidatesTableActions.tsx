@@ -17,11 +17,11 @@ export default function CandidatesTableActions ({ candidateId }: Props) {
     <>
       {/* VIEW */}
       <Link href={'/recruitment/candidates/view/' + candidateId}>
-        <MdOutlineRemoveRedEye className='w-6 h-6 text-[#1273eb] cursor-pointer' />
+        <MdOutlineRemoveRedEye className='w-5 h-5 text-[#1273eb] cursor-pointer' />
       </Link>
 
       {/* EDIT */}
-      <MdEdit className='w-6 h-6 text-[#1273eb] cursor-pointer' />
+      <MdEdit className='w-5 h-5 text-[#1273eb] cursor-pointer' />
     </>
   )
 }

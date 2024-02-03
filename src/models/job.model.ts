@@ -1,6 +1,13 @@
 // IMORTING NECESSARY PACAKGES!
 import mongoose from 'mongoose'
 
+const attachmentsType = {
+  file_Name: String,
+  file_Size: String,
+  file_Type: String,
+  file_Url: String,
+  createdAt: {type:Date, default:Date.now()}
+}
 // CANDIDATE SCHEMA!
 const jobSchema = new mongoose.Schema(
   {
@@ -23,8 +30,8 @@ const jobSchema = new mongoose.Schema(
     openDate: { type: Date },
     closeDate: { type: Date },
     jobReference: { type: String },
-    attachments:{
-      type:[String]
+    attachments: {
+      type: [attachmentsType]
     }
   },
   {

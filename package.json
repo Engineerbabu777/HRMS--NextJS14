@@ -17,6 +17,7 @@
     "@types/react-query": "^1.2.9",
     "@uploadthing/react": "^6.2.2",
     "date-fns": "^3.3.1",
+    "firebase": "^10.8.0",
     "formik": "^2.4.5",
     "framer-motion": "^11.0.3",
     "mongoose": "^8.1.1",
