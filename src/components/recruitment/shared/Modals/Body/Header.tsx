@@ -16,7 +16,7 @@ export default function Header ({ headerName }: Props) {
       <header className='flex items-center justify-between'>
         <h2 className='text-[#1273eb] text-xl font-semibold'>{headerName}</h2>
         <MdClose
-          className='text-[#1273eb] w-6 h-6'
+          className='text-[#1273eb] w-6 h-6 cursor-pointer'
           onClick={() => setModalState({isOpen:false,type:""})}
         />
       </header>

@@ -22,7 +22,8 @@ export default function Input ({
   type = 'text',
   value,
   error,
-  textarea = false
+  textarea = false,
+  onChange
 }: Props) {
   return (
     <>
@@ -34,7 +35,7 @@ export default function Input ({
         {!textarea && (
           <input
             value={value}
-            // onChange={}
+            onChange={onChange}
             name={name}
             type={type}
             className='p-2 rounded-md border w-full border-gray-200 outline-[#1273eb] hover:outline-[#1273eb] '

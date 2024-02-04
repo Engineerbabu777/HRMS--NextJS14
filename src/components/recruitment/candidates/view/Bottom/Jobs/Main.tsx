@@ -1,17 +1,10 @@
 import React from 'react'
 import { BsThreeDotsVertical } from 'react-icons/bs'
 import { MdAdd } from 'react-icons/md'
+import SingleJob from './SingleJob'
+import { options } from '@/utils/data'
 
 type Props = {}
-
-const options = [
-  'Position Name',
-  'Match Stage',
-  'Dropped',
-  'Drop Reason',
-  'Owner',
-  'Created Date'
-]
 
 const objectWise = [
   {
@@ -34,7 +27,6 @@ const objectWise = [
   }
 ]
 export default function Main ({}: Props) {
-  const [open, setOpen] = React.useState(false)
 
   return (
     <>
@@ -60,44 +52,10 @@ export default function Main ({}: Props) {
             ))}
           </div>
           <div className='flex gap-1 flex-col rounded-md'>
-            {objectWise.map((option: any, index: number) => {
-              return (
-                <div className='border rounded-md flex' key={index}>
-                  <p className={` p-2 relative`}>
-                    <BsThreeDotsVertical
-                      onClick={() => {
-                        setOpen(!open)
-                      }}
-                      className='w-5 h-5 text-[#1273eb] cursor-pointer'
-                    />
-                    {/* OPTION! */}
-                    {open && (
-                      <div
-                        className={`absolute w-[200px] rounded-md border bg-white top-0 left-2 transition-all duration-500 ${
-                          open ? 'opacity-1' : 'opacity-0'
-                        } `}
-                      >
-                        <p className='text-center border-b border-gray-100 py-2 hover:opacity-50'>
-                          Move
-                        </p>
-                        <p className='text-center border-b border-gray-100 py-2 hover:opacity-50'>
-                          Drop
-                        </p>
-                        <p className='text-center py-2 hover:opacity-50'>
-                          Remove
-                        </p>
-                      </div>
-                    )}
-                  </p>
-                  <p className={`p-2 flex-1 `}>{option.positionName}</p>
-                  <p className={` p-2 flex-1`}>{option.matchStage}</p>
-                  <p className={` p-2 flex-1`}>{'-'}</p>
-                  <p className={` p-2 flex-1`}>{'-'}</p>
-                  <p className={` p-2 flex-1`}>{option.owner}</p>
-                  <p className={` p-2 flex-1`}>{option.createdDate}</p>
-                </div>
-              )
-            })}
+            {objectWise.map((option: any, index: number) => (
+              <SingleJob option={option} index={index} key={index}/>
+            )
+            )}
           </div>
         </div>
       </section>

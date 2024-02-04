@@ -146,3 +146,14 @@ export const hrJobData = [
       }
 
   ];
+
+
+
+export  const options = [
+    'Position Name',
+    'Match Stage',
+    'Dropped',
+    'Drop Reason',
+    'Owner',
+    'Created Date'
+  ]
