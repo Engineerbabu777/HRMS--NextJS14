@@ -8,6 +8,7 @@ import NextUIProvider from '@/providers/NextUIProvider'
 import {StrictMode} from 'react';
 import ToasterProvider from '@/providers/ToasterProvider'
 import QueryProvider from '@/providers/QueryClientProvider'
+import Modal from '@/components/recruitment/shared/Modals/Modal'
 
 const inter = Nunito({ subsets: ['latin'] })
 
@@ -30,6 +31,7 @@ export default function RootLayout ({
           <ToasterProvider>
             <QueryProvider>
             <>
+            <Modal />
 
             {/* HEADER COMPONENT! */}
             <Header />

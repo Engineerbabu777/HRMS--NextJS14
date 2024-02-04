@@ -6,11 +6,13 @@ import AttachmentsMain from './Attachments/Main'
 import JobsMain from './Jobs/Main'
 import ResumeMain from './Resume/Main'
 
-type Props = {}
+type Props = {
+  data:any
+}
 
 const tabsNames = ['Summary', 'Resume', 'Attachments', 'Jobs']
 
-export default function BottomPortion ({}: Props) {
+export default function BottomPortion ({data}: Props) {
   const [activeTab, setActiveTab] = React.useState(0)
 
   return (
@@ -41,7 +43,7 @@ export default function BottomPortion ({}: Props) {
 
         <div className='flex-1 h-full bg-gray-100'>
           {/* ACCORDING TO TAB DISPLAY DATA! */}
-          {activeTab === 0 && <SummaryMain />}
+          {activeTab === 0 && <SummaryMain data={data}/>}
           {activeTab === 1 && <ResumeMain />}
           {activeTab === 2 && <AttachmentsMain />}
           {activeTab === 3 && <JobsMain />}

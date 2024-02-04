@@ -1,10 +1,11 @@
 import React from 'react'
 import { MdAdd, MdEdit } from 'react-icons/md'
 import { GrAdd } from 'react-icons/gr'
+import AdditionalInformation from './AdditionalInfo/AdditionalInformation'
 
-type Props = {}
+type Props = {data:any}
 
-export default function Main ({}: Props) {
+export default function Main ({data}: Props) {
   return (
     <>
       <section className='flex-1 flex  flex-col gap-4 bg-white'>
@@ -28,116 +29,8 @@ export default function Main ({}: Props) {
         </div>
 
         {/* ADDITIONAL INFORMATION! */}
-        <div className=''>
-          {/* HEADER! */}
-          <header className='bg-gray-100 text-[#1273eb] font-bold p-2 text-xl border-2 '>
-            Additional Information
-          </header>
-          {/* BODY! */}
-          <section className='p-3 w-full border-2 border-t-0 flex justify-between p-5 flex-col gap-2'>
-            <p className='flex justify-between items-center '>
-              <h2 className='text-md font-bold flex-1 text-lg'>
-                Current Department
-              </h2>
-              <div className='flex gap-2 items-center flex-1'>
-                <p className='text-lg font-semibold text-[#1273eb]'>Add</p>
-              </div>
-            </p>
-
-            <p className='flex justify-between items-center '>
-              <h2 className='text-md font-bold  flex-1 text-lg'>
-                Candidate Industry
-              </h2>
-              <div className='flex gap-2 items-center flex-1 justify-between font-semibold text-lg'>
-                <p>Information Technology</p>
-                <MdEdit className='text-[#1273eb] w-4 h-4 cursor-pointer' />
-              </div>
-            </p>
-
-            <p className='flex justify-between items-center '>
-              <h2 className='text-md font-bold  flex-1 text-lg'>
-                Total Experience
-              </h2>
-              <div className='flex gap-2 items-center  flex-1 text-lg justify-between font-semibold'>
-                <p className='text-lg font-semibold text-[#1273eb]'>Add</p>
-
-                {/* <MdEdit className='text-[#1273eb] w-4 h-4 cursor-pointer' /> */}
-              </div>
-            </p>
-
-            <p className='flex justify-between items-center '>
-              <h2 className='text-md font-bold  flex-1 text-lg'>
-                Relevant Experience
-              </h2>
-              <div className='flex gap-2 items-center  flex-1 text-lg justify-between font-semibold'>
-                <p className='text-lg font-semibold text-[#1273eb]'>Add</p>
-                {/* <MdEdit className='text-[#1273eb] w-4 h-4 cursor-pointer' /> */}
-              </div>
-            </p>
-
-            <p className='flex justify-between items-center '>
-              <h2 className='text-md font-bold  flex-1 text-lg'>
-                Current Salary
-              </h2>
-              <div className='flex gap-2 items-center  flex-1 text-lg justify-between font-semibold'>
-                <p className='text-lg font-semibold text-[#1273eb]'>Add</p>
-
-                {/* <MdEdit className='text-[#1273eb] w-4 h-4 cursor-pointer' /> */}
-              </div>
-            </p>
-
-            <p className='flex justify-between items-center '>
-              <h2 className='text-md font-bold  flex-1 text-lg'>
-                Notice Period
-              </h2>
-              <div className='flex gap-2 items-center  flex-1 text-lg justify-between font-semibold'>
-                <p className='text-lg font-semibold text-[#1273eb]'>Add</p>
-
-                {/* <MdEdit className='text-[#1273eb] w-4 h-4 cursor-pointer' /> */}
-              </div>
-            </p>
-
-            <p className='flex justify-between items-center '>
-              <h2 className='text-md font-bold  flex-1 text-lg'>
-                Expected Salary
-              </h2>
-              <div className='flex gap-2 items-center  flex-1 text-lg justify-between font-semibold'>
-                <p className='text-lg font-semibold text-[#1273eb]'>Add</p>
-
-                {/* <MdEdit className='text-[#1273eb] w-4 h-4 cursor-pointer' /> */}
-              </div>
-            </p>
-
-            <p className='flex justify-between items-center '>
-              <h2 className='text-md font-bold  flex-1 text-lg'>Languages</h2>
-              <div className='flex gap-2 items-center  flex-1 text-lg justify-between font-semibold'>
-                <p>Urdu, English</p>
-                <MdEdit className='text-[#1273eb] w-4 h-4 cursor-pointer' />
-              </div>
-            </p>
-
-            <p className='flex justify-between items-center '>
-              <h2 className='text-md font-bold  flex-1 text-lg'>
-                Candidate Reference Name
-              </h2>
-              <div className='flex gap-2 items-center  flex-1 text-lg justify-between font-semibold'>
-                <p className='text-lg font-semibold text-[#1273eb]'>Add</p>
-                {/* <MdEdit className='text-[#1273eb] w-4 h-4 cursor-pointer' /> */}
-              </div>
-            </p>
-
-            <p className='flex justify-between items-center '>
-              <h2 className='text-md font-bold  flex-1 text-lg'>
-                Candidate Description
-              </h2>
-              <div className='flex gap-2 items-center  flex-1 text-lg justify-between font-semibold'>
-                <p className='text-lg font-semibold text-[#1273eb]'>Add</p>
-                {/* <MdEdit className='text-[#1273eb] w-4 h-4 cursor-pointer' /> */}
-              </div>
-            </p>
-          </section>
-        </div>
-
+        <AdditionalInformation data={data}/>
+        
         {/* JOBS! */}
         <div className=''>
           {/* HEADER! */}

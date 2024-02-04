@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import FullContainer from './SingleDetailContainer';
 import SideHeadingBox from './SideHeadingBox';
+import { PossibleJobDetails } from '@/types';
 
 type Props = {
   data: any;

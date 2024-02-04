@@ -6,9 +6,11 @@ import { GoDotFill } from 'react-icons/go'
 import { FaCaretDown } from 'react-icons/fa'
 import { uploadImageToCloudinary } from '@/utils/uploadImageToCloudinary'
 import { BiEdit } from "react-icons/bi";
-type Props = {}
+type Props = {
+  data:any
+}
 
-export default function MiddlePart ({}: Props) {
+export default function MiddlePart ({data}: Props) {
 
     
   const handleImageChange = async (
@@ -21,9 +23,9 @@ export default function MiddlePart ({}: Props) {
     <>
       <div className='flex gap-4 items-center flex-grow'>
         {/* IMAGE! */}
-        <div className='h-48 relative w-48 rounded-full bg-blue-400 text-6xl flex items-center justify-center font-bold text-white'>
+        <div className='h-48 relative w-48 rounded-full text-6xl flex items-center justify-center font-bold text-white'>
           <img
-            src={'/elon.jpg'}
+            src={data?.imageURL || '/elon.jpg'}
             className='w-full h-full overflow-hidden rounded-full object-cover'
             alt='alter-text'
           />
@@ -45,13 +47,13 @@ export default function MiddlePart ({}: Props) {
         <div className='flex flex-col gap-2'>
           {/* NAME! */}
           <div className='flex gap-2 items-center'>
-            <h2 className='text-[#1273eb] font-bold text-3xl'>Elon Musk</h2>
+            <h2 className='text-[#1273eb] font-bold text-3xl'>{data?.candidateName}</h2>
           </div>
 
           {/* LOCATION! */}
           <div className='flex items-center'>
             <MdLocationOn className='w-5 h-5' />
-            <p className='text-xl font-semibold'>Boca Chica, Texas</p>
+            <p className='text-xl font-semibold'>{data?.candidateLocation}</p>
           </div>
         </div>
       </div>

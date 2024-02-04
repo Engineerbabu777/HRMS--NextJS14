@@ -2,16 +2,18 @@ import React from 'react'
 import TopPortion from './Top/TopPortion'
 import BottomPortion from './Bottom/BottomPortion'
 
-type Props = {}
+type Props = {
+  data:any
+}
 
-export default function Main ({}: Props) {
+export default function Main ({data}: Props) {
   return (
     <>
       <section className='flex flex-col gap-6 h-[calc(100vh-52px)]  lg:max-w-[85vw] p-4 pt-8 bg-gray-100 overflow-auto'>
         {/* TOP PORTION VIEW CANDIDATE!! */}
-        <TopPortion />
+        <TopPortion data={data}/>
         {/* BOTTOM PORTION DETAILS OF CANDIDATE! */}
-        <BottomPortion />
+        <BottomPortion data={data} />
       </section>
     </>
   )

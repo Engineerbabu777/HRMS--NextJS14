@@ -11,21 +11,24 @@ export type JobTypes = {
 
 // TYPESCRIPT TYPES FOR CANDIDATES DATA!
 export type CandidateTypes = {
-  name: string
+  candidateName: string
   imageURL: string
   phoneNumber: number
-  location: string
-  email: string
-  description: string
+  candidateLocation: string
+  candidateEmail: string
+  candidateDescription: string
 }
 
-// VIEW PARAM TYPE!
+//  VIEW PARAM TYPES!
 export type ViewJobParamsType = {
   jobId: string
 }
 
-// TYPES FOR POSSIBLE VALUES IN JOB DETAILS!
+export type ViewCandidateParamsType = {
+  candidateId: string
+}
 
+// TYPES FOR POSSIBLE VALUES IN JOB DETAILS!
 export type PossibleJobDetails = {
   jobReference?: string
   positionName?: string
