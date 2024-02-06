@@ -1,21 +1,53 @@
-
 // TYPESCRIPT TYPES FOR JOB DATA!
 export type JobTypes = {
-    name: string,
-    location: string,
-    minSalary: number,
-    maxSalary: number,
-    headCount: string,
-    description: string,
-    contractDetails: string
+  jobName: string
+  jobLocation: string
+  minimumSalary: number
+  maximumSalary: number
+  headCount: number
+  description: string
+  contractDetails: string
 }
 
 // TYPESCRIPT TYPES FOR CANDIDATES DATA!
 export type CandidateTypes = {
-    name: string,
-    imageURL: string,
-    mobileNo: number,
-    location: string,
-    email: string,
-    description: string,
+  candidateName: string
+  imageURL: string
+  phoneNumber: number
+  candidateLocation: string
+  candidateEmail: string
+  candidateDescription: string
+}
+
+//  VIEW PARAM TYPES!
+export type ViewJobParamsType = {
+  jobId: string
+}
+
+export type ViewCandidateParamsType = {
+  candidateId: string
+}
+
+// TYPES FOR POSSIBLE VALUES IN JOB DETAILS!
+export type PossibleJobDetails = {
+  jobReference?: string
+  positionName?: string
+  jobLocation?: string
+  jobName?: string
+  remote?: string
+  officeAddress?: string
+  experienceLevel?: string
+  headCount?: string
+  minimumSalary?: string
+  maximumSalary?: string
+  frequency?: string
+  closeDate?: string
+  openDate?: string
+  contractDetails?: string
+}
+
+
+export type ViewParamsType = {
+  candidateId?: string,
+  jobId?: string
 }

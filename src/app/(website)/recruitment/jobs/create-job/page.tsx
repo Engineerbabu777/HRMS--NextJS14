@@ -1,32 +1,41 @@
 'use client'
 
 import { FaArrowLeftLong } from 'react-icons/fa6'
-import { Input } from '@nextui-org/react'
 import React, { useState } from 'react'
 import { useFormik } from 'formik'
-import * as yup from 'yup'
 import FormErrors from '@/components/recruitment/shared/FormErrors'
 import { validationSchemaForJob } from '@/utils/validateJob'
+import { createJob } from '@/actions/job/create-job'
+import toast from 'react-hot-toast'
 
 type Props = {}
 
 export default function Page ({}: Props) {
   const formik = useFormik({
     initialValues: {
-      name: '',
-      location: null,
-      minSalary: 0,
-      maxSalary: 0,
+      jobName: '',
+      jobLocation: '',
+      minimumSalary: 0,
+      maximumSalary: 0,
       headCount: 0,
-      description: '',
+      jobDescription: '',
       contractDetails: ''
     },
-    onSubmit: () => {
-      // SUBMIT FORM!
-      console.log('Form SUBMITTED!')
+    onSubmit: async (values, actions) => {
+      // WILL SUBMIT THIS FORM AND SAVE DATA TO BACKEND!
+      console.log({values})
+      // WILL SUBMIT THIS FORM AND SAVE DATA TO BACKEND!
+      const response:any = await createJob(values)
+      // IF THE USER WAS SUCCESSFULLY SUBMITTED!
+      if (response?.status === 200) {
+        toast.success('Added!')
+        formik.resetForm() // Reset the form after successful submission.
+      }
     },
     validationSchema: validationSchemaForJob
   })
+
+  console.log(formik.values);
 
   return (
     <>
@@ -44,23 +53,26 @@ export default function Page ({}: Props) {
           {/* FORM! */}
           <form
             className='mt-4 flex flex-col gap-6 px-10 '
-            onSubmit={formik.handleSubmit}
+            onSubmit={(event: any) => {
+              event.preventDefault()
+              formik.handleSubmit()
+            }}
           >
             <div className='flex gap-2 justify-between items-center'>
               <label className='flex flex-col gap-1 flex-1'>
                 <p className='flex gap-1 '>
-                  <span className='font-bold'>POSITION NAME</span>
+                  <span className='font-bold'>JOB NAME</span>
                   <span className='text-red-500'>*</span>
                 </p>
                 <input
-                  value={formik.values.name}
+                  value={formik.values.jobName}
                   onChange={formik.handleChange}
-                  name='name'
+                  name='jobName'
                   className='p-2 rounded-md border max-w-[70%] border-gray-200 outline-[#1273eb] hover:outline-[#1273eb] '
                   placeholder={'Software Engineer'}
                 />
-                {formik?.errors?.name && (
-                  <FormErrors error={formik?.errors?.name} />
+                {formik?.errors?.jobName && (
+                  <FormErrors error={formik?.errors?.jobName} />
                 )}
               </label>
 
@@ -70,8 +82,8 @@ export default function Page ({}: Props) {
                   <span className='text-red-500'>*</span>
                 </p>
                 <select
-                  name='location'
-                  value={formik.values.location}
+                  name='jobLocation'
+                  value={formik.values.jobLocation}
                   onChange={formik.handleChange}
                   className=' max-w-[70%] cursor-pointer p-2 rounded-md border border-gray-200 outline-[#1273eb] hover:outline-[#1273eb]'
                 >
@@ -79,8 +91,8 @@ export default function Page ({}: Props) {
                   <option value={'karachi'}>Karachi</option>
                   <option value={'istanbul'}>Istanbul</option>
                 </select>
-                {formik?.errors?.location && (
-                  <FormErrors error={formik?.errors?.location} />
+                {formik?.errors?.jobLocation && (
+                  <FormErrors error={formik?.errors?.jobLocation} />
                 )}
               </label>
             </div>
@@ -131,16 +143,15 @@ export default function Page ({}: Props) {
                   <span className='text-red-500'>*</span>
                 </p>
                 <textarea
-                  value={formik.values.description}
+                  value={formik.values.jobDescription}
                   onChange={formik.handleChange}
-                  name='description'
+                  name='jobDescription'
                   rows={10}
                   className='resize-none max-w-[70%] p-2 rounded-md border border-gray-200 outline-[#1273eb] hover:outline-[#1273eb] '
                   placeholder={'Description About Job'}
-                  type='text'
                 />
-                {formik?.errors?.description && (
-                  <FormErrors error={formik?.errors?.description} />
+                {formik?.errors?.jobDescription && (
+                  <FormErrors error={formik?.errors?.jobDescription} />
                 )}
               </label>
               <label className='flex flex-col gap-1 flex-1'>
@@ -150,37 +161,45 @@ export default function Page ({}: Props) {
                 </p>
                 <div className='max-w-[70%]  flex justify-between items-center'>
                   <input
-                    value={formik.values.minSalary}
+                    value={formik.values.minimumSalary}
                     onChange={formik.handleChange}
                     className='w-[45%] p-2 rounded-md border border-gray-200 outline-[#1273eb] hover:outline-[#1273eb] '
                     placeholder={'PKR From'}
                     type='number'
-                    name='minSalary'
+                    name='minimumSalary'
                   />
                   <input
-                    value={formik.values.maxSalary}
+                    value={formik.values.maximumSalary}
                     onChange={formik.handleChange}
                     className='w-[45%] p-2 rounded-md border border-gray-200 outline-[#1273eb] hover:outline-[#1273eb] '
                     placeholder={'PKR To'}
                     type='number'
-                    name='maxSalary'
+                    name='maximumSalary'
                   />
                 </div>
-                {formik?.errors?.maxSalary && (
-                  <FormErrors error={formik?.errors?.maxSalary} />
+                {formik?.errors?.maximumSalary && (
+                  <FormErrors error={formik?.errors?.maximumSalary} />
                 )}
-                {formik?.errors?.minSalary && (
-                  <FormErrors error={formik?.errors?.minSalary} />
+                {formik?.errors?.minimumSalary && (
+                  <FormErrors error={formik?.errors?.minimumSalary} />
                 )}
               </label>
             </div>
-            <div className='flex items-center justify-end'>
-              <button
-                className='bg-[#1273eb] text-white rounded-md w-[200px] h-[32px] flex items-center justify-center'
-                type='submit'
-              >
-                Submit
-              </button>
+            <div className='flex items-center justify-end  w-[75%]'>
+              <div className='flex justify-end items-center gap-4 max-w-[75%]'>
+                <button
+                  className='text-[#1273eb] font-semibold underline w-[100px] rounded-full h-[32px] hover:text-black hover:underline-none hover:bg-white'
+                  type='reset'
+                >
+                  Reset
+                </button>
+                <button
+                  className='bg-[#1273eb] text-white hover:opacity-50 rounded-full w-[100px] h-[32px]'
+                  type='submit'
+                >
+                  Save
+                </button>
+              </div>
             </div>
           </form>
         </div>
