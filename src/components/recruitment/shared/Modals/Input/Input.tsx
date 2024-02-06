@@ -45,6 +45,7 @@ export default function Input ({
         {textarea && (
           <>
             <textarea
+            onChange={onChange}
               name={name}
               rows={5}
               className='resize-none w-full p-2 rounded-md border border-gray-200 outline-[#1273eb] hover:outline-[#1273eb] '

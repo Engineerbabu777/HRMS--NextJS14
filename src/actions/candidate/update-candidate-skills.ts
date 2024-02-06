@@ -4,7 +4,7 @@ import { DBConnect } from '@/database/DBConnect'
 import { Candidate } from '@/models/candidate.model'
 import { revalidatePath } from 'next/cache'
 
-export const updateCandidateExperiences = async (
+export const updateCandidateSkills = async (
   data: any, // WILL CHANGE LATER!
   ID: string // CANDIDATE ID
 ) => {
@@ -15,7 +15,7 @@ export const updateCandidateExperiences = async (
     // UPDATE THE VALUE!
     await Candidate.findByIdAndUpdate(ID, {
       $push: {
-        candidateExperiences: data
+        candidateSkills: data
       }
     })
 
@@ -25,10 +25,10 @@ export const updateCandidateExperiences = async (
     return {
       success: true,
       message: 'updated Success!',
-      status:200
+      status: 200
     }
   } catch (error: any) {
-    // RETURN BACK THE RESPONSE1
+    // RETURN BACK THE RESPONSE!
     return {
       error: true,
       message: error.message

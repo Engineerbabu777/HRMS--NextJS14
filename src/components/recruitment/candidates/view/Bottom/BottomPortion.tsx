@@ -44,7 +44,7 @@ export default function BottomPortion ({data}: Props) {
         <div className='flex-1 h-full bg-gray-100'>
           {/* ACCORDING TO TAB DISPLAY DATA! */}
           {activeTab === 0 && <SummaryMain data={data}/>}
-          {activeTab === 1 && <ResumeMain />}
+          {activeTab === 1 && <ResumeMain data={data}/>}
           {activeTab === 2 && <AttachmentsMain />}
           {activeTab === 3 && <JobsMain />}
         </div>

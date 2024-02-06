@@ -4,7 +4,7 @@ import { DBConnect } from '@/database/DBConnect'
 import { Candidate } from '@/models/candidate.model'
 import { revalidatePath } from 'next/cache'
 
-export const updateCandidateExperiences = async (
+export const updateCandidateEducation = async (
   data: any, // WILL CHANGE LATER!
   ID: string // CANDIDATE ID
 ) => {
@@ -15,7 +15,7 @@ export const updateCandidateExperiences = async (
     // UPDATE THE VALUE!
     await Candidate.findByIdAndUpdate(ID, {
       $push: {
-        candidateExperiences: data
+        candidateEducations: data
       }
     })
 

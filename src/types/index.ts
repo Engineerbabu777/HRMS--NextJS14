@@ -45,3 +45,9 @@ export type PossibleJobDetails = {
   openDate?: string
   contractDetails?: string
 }
+
+
+export type ViewParamsType = {
+  candidateId?: string,
+  jobId?: string
+}

@@ -108,14 +108,14 @@ const candidateSchema = new mongoose.Schema(
     candidateEducations: {
       type: [
         {
-          instituteName: Number,
-          degree: Number,
-          specialization: Number,
-          startDate: Number,
-          endDate: Number,
+          instituteName: String,
+          degree: String,
+          specialization: String,
+          startDate: Date,
+          endDate: Date,
           marks: Number,
           grade: Number,
-          location: Number
+          location: String
         }
       ]
     },
@@ -131,7 +131,30 @@ const candidateSchema = new mongoose.Schema(
           emailAddress: String
         }
       ]
-    }
+    },
+    // CANDIDATE SKILLS!
+    candidateSkills: {
+      type:[
+        {
+          skillName:String,
+          points:Number,
+        }
+      ]
+    },
+
+    resumes: {
+      type: [
+        {
+          file_Name: String,
+          file_Size: String,
+          file_Type: String,
+          file_Url: String,
+          createdAt: { type: Date, default: Date.now() }
+        }
+      ]
+    },
+    
+
   },
   {
     // TIMESTAMP OPTION FOR AUTO-GENERATING CREATED AND UPDATED TIMESTAMPS

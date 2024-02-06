@@ -9,7 +9,6 @@ export const validationSchemaForExperience = yup.object({
   salary: yup.number().min(1).required('Salary is required'),
   jobDescription: yup
     .string()
-    .length(10)
     .trim()
     .required('Job Description is required')
 })

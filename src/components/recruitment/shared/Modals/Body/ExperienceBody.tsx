@@ -33,8 +33,9 @@ export default function ExperienceBody ({}: Props) {
       const response: any = await updateCandidateExperiences(values,candidateId as string)
       // IF THE USER WAS SUCCESSFULLY SUBMITTED!
       if (response?.status === 200) {
-        toast.success('Added!')
         formik.resetForm() // Reset the form after successful submission.
+        setModalState({...modalState, isOpen: false})
+        toast.success('Added!')
       }
     },
     validationSchema: validationSchemaForExperience
@@ -55,7 +56,7 @@ export default function ExperienceBody ({}: Props) {
           name='positionName'
           placeholder='Software Engineer'
           value={formik.values.positionName}
-          key={formik.values.positionName}
+          key={'positionName'}
           type='text'
           error={formik.errors.positionName}
           onChange={formik.handleChange}
@@ -67,7 +68,7 @@ export default function ExperienceBody ({}: Props) {
           name='companyName'
           placeholder='Software Engineer'
           value={formik.values.companyName}
-          key={formik.values.companyName}
+          key={"companyName"}
           type='text'
           error={formik.errors.companyName}
           onChange={formik.handleChange}
@@ -80,7 +81,7 @@ export default function ExperienceBody ({}: Props) {
             name='startDate'
             placeholder='Software Engineer'
             value={formik.values.startDate}
-            key={formik.values.startDate}
+            // key={formik.values.startDate}
             type='date'
             error={formik.errors.startDate}
             onChange={formik.handleChange}
@@ -92,7 +93,7 @@ export default function ExperienceBody ({}: Props) {
             name='endDate'
             placeholder='Software Engineer'
             value={formik.values.endDate}
-            key={formik.values.endDate}
+            // key={formik.values.endDate}
             type='date'
             error={formik.errors.endDate}
             onChange={formik.handleChange}
@@ -104,7 +105,7 @@ export default function ExperienceBody ({}: Props) {
           name='salary'
           placeholder='Software Engineer'
           value={formik.values.salary}
-          key={formik.values.salary}
+          // key={formik.values.salary}
           type='number'
           error={formik.errors.salary}
           onChange={formik.handleChange}
@@ -116,7 +117,7 @@ export default function ExperienceBody ({}: Props) {
           name='jobDescription'
           placeholder='Software Engineer'
           value={formik.values.jobDescription}
-          key={formik.values.jobDescription}
+          // key={formik.values.jobDescription}
           type='text'
           textarea
           error={formik.errors.jobDescription}
@@ -129,7 +130,7 @@ export default function ExperienceBody ({}: Props) {
         <button className='text-gray-500 border text-lg p-1 rounded-md'>
           Cancel
         </button>
-        <button className='bg-[#1273eb] text-white text-lg p-1 rounded-md'>
+        <button onClick={formik.handleSubmit} className='bg-[#1273eb] text-white text-lg p-1 rounded-md'>
           Submit
         </button>
       </div>

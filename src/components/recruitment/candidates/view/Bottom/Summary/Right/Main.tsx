@@ -11,16 +11,16 @@ export default function Main ({ data }: Props) {
     <>
       <section className='flex-1 flex  flex-col gap-4 bg-white'>
         {/* SKILLS */}
-        <Skills />
+        <Skills data={data}/>
 
         {/* ADDITIONAL INFORMATION! */}
         <AdditionalInformation data={data} />
 
         {/* JOBS! */}
-        <Jobs />
+        <Jobs data={data}/>
 
         {/* ADDRESSES */}
-        <Addresses />
+        <Addresses data={data}/>
       </section>
     </>
   )

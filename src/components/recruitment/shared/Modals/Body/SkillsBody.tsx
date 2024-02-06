@@ -9,6 +9,7 @@ import { ModalAtom } from '@/recoil/modalAtom'
 import { MdAdd, MdClose, MdDelete } from 'react-icons/md'
 import FormErrors from '../Input/FormErrors'
 import useSkills from '@/hooks/useSkills'
+import { ViewCandidateParamsType } from '@/types'
 
 type Props = {}
 
@@ -17,7 +18,7 @@ type Skills = {
   points: number
 }
 export default function SkillsBody ({}: Props) {
-  const { candidateId } = useParams()
+  const { candidateId }:ViewCandidateParamsType = useParams()
   const [modalState, setModalState] = useRecoilState(ModalAtom)
 
   const { addSkill, changeValue, error, onSubmit, removeSkill,skills } = useSkills()
@@ -25,11 +26,11 @@ export default function SkillsBody ({}: Props) {
   return (
     <>
       {/* HEADER! */}
-      <Header headerName={'Skills'} />
+      <Header headerName={'Skills'}  />
 
       {/* BODY! */}
       <div className='flex flex-col gap-2 w-full mt-3'>
-        {skills.map((s: Skills, i: number) => (
+        {skills?.length >0 && skills.map((s: Skills, i: number) => (
           <>
             <div className='flex items-center gap-2'>
               {/* INPUT! */}
@@ -86,7 +87,7 @@ export default function SkillsBody ({}: Props) {
           Cancel
         </button>
         <button
-          onClick={onSubmit}
+          onClick={() => onSubmit(candidateId)}
           className='bg-[#1273eb] text-white text-lg p-1 rounded-md'
         >
           Submit

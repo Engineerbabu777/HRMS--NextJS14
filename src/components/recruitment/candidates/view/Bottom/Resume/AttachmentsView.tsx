@@ -10,23 +10,23 @@ type Props = {
   data: any
 }
 
-export default function AttachmentsView ({ data }: Props) {
+export default function ResumesView ({ data }: Props) {
   const {uploadPdf,uploadingProgress} = useUploadPdf();
 
   const handleUploadFile = async (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     if (!event?.target?.files) return
-    await uploadPdf(event?.target?.files[0],"job")
+    await uploadPdf(event?.target?.files[0],"candidate")
   }
 
   return (
     <>
       {/* NO ATTACHMENTS VIEW! */}
-      {data?.attachments?.length === 0 && <NoAttachmentView />}
+      {data?.resumes?.length === 0 && <NoAttachmentView candidates />}
 
       {/* IF NAY ATTACHMENTS THE VIEW WILL BE DIFFERENT! */}
-      {data?.attachments?.length > 0 && (
+      {data?.resumes?.length > 0 && (
         <section className='w-full flex h-full flex-1 overflow-auto scrollbar bg-white flex-col p-4 gap-4'>
           {/* HEADER! */}
           <header className='flex items-center justify-between '>

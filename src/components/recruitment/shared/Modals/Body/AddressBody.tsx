@@ -7,10 +7,17 @@ import { useFormik } from 'formik'
 import { validationSchemaForAddress } from '@/utils/validations'
 import Input from '../Input/Input'
 import Header from './Header'
+import toast from 'react-hot-toast';
+import { useParams } from 'next/navigation'
+import { updateCandidateAddresses } from '@/actions/candidate/update-candidate-addressed'
 
 type Props = {}
 
 export default function AddressBody ({}: Props) {
+
+  const {candidateId} = useParams();
+
+
   const formik = useFormik({
     initialValues: {
       currentAddress: '',
@@ -24,12 +31,12 @@ export default function AddressBody ({}: Props) {
       // WILL SUBMIT THIS FORM AND SAVE DATA TO BACKEND!
       // console.log({values})
       // WILL SUBMIT THIS FORM AND SAVE DATA TO BACKEND!
-      // const response:any = await createJob(values)
+      const response:any = await updateCandidateAddresses(values,candidateId as string)
       // IF THE USER WAS SUCCESSFULLY SUBMITTED!
-      // if (response?.status === 200) {
-      //   toast.success('Added!')
-      // formik.resetForm() // Reset the form after successful submission.
-      // }
+      if (response?.status === 200) {
+      formik.resetForm() // Reset the form after successful submission.
+      toast.success('Added!')
+      }
     },
     validationSchema: validationSchemaForAddress
   })
@@ -46,7 +53,7 @@ export default function AddressBody ({}: Props) {
           name='currentAddress'
           placeholder='Software Engineer'
           value={formik.values.currentAddress}
-          key={formik.values.currentAddress}
+          key={'currentAddress'}
           type='text'
           error={formik.errors.currentAddress}
           onChange={formik.handleChange}
@@ -58,7 +65,7 @@ export default function AddressBody ({}: Props) {
           name='permanentAddress'
           placeholder='Software Engineer'
           value={formik.values.permanentAddress}
-          key={formik.values.permanentAddress}
+          // key={formik.values.permanentAddress}
           type='text'
           error={formik.errors.permanentAddress}
           onChange={formik.handleChange}
@@ -69,7 +76,7 @@ export default function AddressBody ({}: Props) {
           name='district'
           placeholder='Software Engineer'
           value={formik.values.district}
-          key={formik.values.district}
+          // key={formik.values.district}
           type='text'
           error={formik.errors.district}
           onChange={formik.handleChange}
@@ -79,7 +86,7 @@ export default function AddressBody ({}: Props) {
           name='province'
           placeholder='Software Engineer'
           value={formik.values.province}
-          key={formik.values.province}
+          // key={formik.values.province}
           type='text'
           error={formik.errors.province}
           onChange={formik.handleChange}
@@ -90,7 +97,7 @@ export default function AddressBody ({}: Props) {
           name='country'
           placeholder='Software Engineer'
           value={formik.values.country}
-          key={formik.values.country}
+          // key={formik.values.country}
           type='text'
           error={formik.errors.country}
           onChange={formik.handleChange}
@@ -101,7 +108,7 @@ export default function AddressBody ({}: Props) {
           name='postCode'
           placeholder='Software Engineer'
           value={formik.values.postCode}
-          key={formik.values.postCode}
+          // key={formik.values.postCode}
           type='number'
           error={formik.errors.postCode}
           onChange={formik.handleChange}
@@ -113,7 +120,7 @@ export default function AddressBody ({}: Props) {
         <button className='text-gray-500 border text-lg p-1 rounded-md'>
           Cancel
         </button>
-        <button className='bg-[#1273eb] text-white text-lg p-1 rounded-md'>
+        <button onClick={formik.handleSubmit} className='bg-[#1273eb] text-white text-lg p-1 rounded-md'>
           Submit
         </button>
       </div>

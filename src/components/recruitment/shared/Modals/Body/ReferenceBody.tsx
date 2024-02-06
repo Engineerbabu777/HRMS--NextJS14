@@ -7,10 +7,15 @@ import { useFormik } from 'formik'
 import { validationSchemaForReference } from '@/utils/validations'
 import Input from '../Input/Input'
 import Header from './Header'
+import toast from 'react-hot-toast';
+import { updateCandidateReferencesContact } from '@/actions/candidate/update-canidate-emergency-contact'
+import { useParams } from 'next/navigation'
 
 type Props = {}
 
 export default function ReferenceBody ({}: Props) {
+  const {candidateId} = useParams();
+
   const formik = useFormik({
     initialValues: {
       referenceName: '',
@@ -21,14 +26,14 @@ export default function ReferenceBody ({}: Props) {
     },
     onSubmit: async (values, actions) => {
       // WILL SUBMIT THIS FORM AND SAVE DATA TO BACKEND!
-      // console.log({values})
+      console.log({values})
       // WILL SUBMIT THIS FORM AND SAVE DATA TO BACKEND!
-      // const response:any = await createJob(values)
+      const response:any = await updateCandidateReferencesContact(values,candidateId)
       // IF THE USER WAS SUCCESSFULLY SUBMITTED!
-      // if (response?.status === 200) {
-      //   toast.success('Added!')
-      // formik.resetForm() // Reset the form after successful submission.
-      // }
+      if (response?.status === 200) {
+        toast.success('Added!')
+      formik.resetForm() // Reset the form after successful submission.
+      }
     },
     validationSchema: validationSchemaForReference
   })
@@ -46,7 +51,7 @@ export default function ReferenceBody ({}: Props) {
           name='referenceName'
           placeholder='Software Engineer'
           value={formik.values.referenceName}
-          key={formik.values.referenceName}
+          // key={formik.values.referenceName}
           type='text'
           error={formik.errors.referenceName}
           onChange={formik.handleChange}
@@ -58,7 +63,7 @@ export default function ReferenceBody ({}: Props) {
           name='relation'
           placeholder='Software Engineer'
           value={formik.values.relation}
-          key={formik.values.relation}
+          // key={formik.values.relation}
           type='text'
           error={formik.errors.relation}
           onChange={formik.handleChange}
@@ -70,7 +75,7 @@ export default function ReferenceBody ({}: Props) {
           name='companyName'
           placeholder='Software Engineer'
           value={formik.values.companyName}
-          key={formik.values.companyName}
+          // key={formik.values.companyName}
           type='text'
           error={formik.errors.companyName}
           onChange={formik.handleChange}
@@ -82,7 +87,7 @@ export default function ReferenceBody ({}: Props) {
           name='phoneNumber'
           placeholder='Software Engineer'
           value={formik.values.phoneNumber}
-          key={formik.values.phoneNumber}
+          // key={formik.values.phoneNumber}
           type='number'
           error={formik.errors.phoneNumber}
           onChange={formik.handleChange}
@@ -94,7 +99,7 @@ export default function ReferenceBody ({}: Props) {
           name='emailAddress'
           placeholder='Software Engineer'
           value={formik.values.emailAddress}
-          key={formik.values.emailAddress}
+          // key={formik.values.emailAddress}
           type='text'
           error={formik.errors.emailAddress}
           onChange={formik.handleChange}
@@ -106,7 +111,7 @@ export default function ReferenceBody ({}: Props) {
         <button className='text-gray-500 border text-lg p-1 rounded-md'>
           Cancel
         </button>
-        <button className='bg-[#1273eb] text-white text-lg p-1 rounded-md'>
+        <button onClick={formik.handleSubmit} className='bg-[#1273eb] text-white text-lg p-1 rounded-md'>
           Submit
         </button>
       </div>

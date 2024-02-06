@@ -33,7 +33,6 @@ export default function Modal () {
             )}
             {modalState.type === 'experience' && <ExperienceBody />}
             {modalState.type === 'skills' && <SkillsBody />}
-            {modalState.type === 'skills' && <SkillsBody />}
             {modalState.type === 'moveTo' && <MoveToBody />}
           </div>
         </div>
