@@ -7,9 +7,9 @@ type Props = {
 }
 
 export default function Main ({data}: Props) {
-  const [open, setOpen] = useState(false)
   return (
     <>
+    {/* <p className="text-red-500">tets</p> */}
      <ResumesView data={data}/>
     </>
   )

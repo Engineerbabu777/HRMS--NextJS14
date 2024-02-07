@@ -18,7 +18,7 @@ export default function Addresses ({ data }: Props) {
       <div className='flex-1'>
         {/* HEADER! */}
         <HeaderWithAdd
-          showAdd={data.candidateAddresses.length}
+          showAdd={!!data.candidateAddresses.length}
           headerName='Addressed'
           type='address'
         />

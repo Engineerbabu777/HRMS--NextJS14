@@ -17,7 +17,7 @@ export default function Skills ({ data }: Props) {
       <div className=''>
         {/* HEADER! */}
         <HeaderWithAdd
-          showAdd={data.candidateSkills.length}
+          showAdd={!!data.candidateSkills.length}
           type='skills'
           headerName='Skills'
         />

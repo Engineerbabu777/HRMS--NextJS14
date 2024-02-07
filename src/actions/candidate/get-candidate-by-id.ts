@@ -9,7 +9,12 @@ export const getCandidateById = async (ID: string) => {
     DBConnect()
 
     // GET CANDIDATE BY ID!
-    const candidate = await Candidate.findById(ID)
+    const candidate = await Candidate.findById(ID).populate({
+      path:"candidateJobs",
+      populate: {
+        path: "jobId",
+      }
+    })
 
     // RETURN JOB BACK!
     return {

@@ -17,7 +17,7 @@ export default function EducationDetails ({ data }: Props) {
       <div className='flex-1'>
         {/* HEADER! */}
         <HeaderWithAdd
-          showAdd={data.candidateEducations.length}
+          showAdd={!!data.candidateEducations.length}
           headerName={'Education'}
           type='education'
         />

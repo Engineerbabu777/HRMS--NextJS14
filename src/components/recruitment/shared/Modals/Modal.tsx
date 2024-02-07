@@ -7,6 +7,7 @@ import { useRecoilState } from 'recoil'
 import { ModalAtom } from '@/recoil/modalAtom'
 import SkillsBody from './Body/SkillsBody'
 import MoveToBody from './Body/MoveToBody'
+import JobsBody from './Body/JobsBody'
 
 export default function Modal () {
   const [modalState, setModalState] = useRecoilState(ModalAtom)
@@ -34,6 +35,8 @@ export default function Modal () {
             {modalState.type === 'experience' && <ExperienceBody />}
             {modalState.type === 'skills' && <SkillsBody />}
             {modalState.type === 'moveTo' && <MoveToBody />}
+            {modalState.type === 'jobs' && <JobsBody />}
+
           </div>
         </div>
       )}

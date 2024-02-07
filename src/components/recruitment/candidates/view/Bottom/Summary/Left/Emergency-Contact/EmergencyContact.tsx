@@ -15,7 +15,7 @@ export default function EmergencyContact ({ data }: Props) {
       <div className='flex-1'>
         {/* HEADER! */}
         <HeaderWithAdd
-          showAdd={data.candidateReferences.length}
+          showAdd={!!data.candidateReferences.length}
           headerName={'Contact References'}
           type='emergency'
         />

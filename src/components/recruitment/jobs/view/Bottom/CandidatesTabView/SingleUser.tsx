@@ -6,6 +6,7 @@ import React from 'react'
 import { BsThreeDotsVertical } from 'react-icons/bs'
 import { CiClock2 } from 'react-icons/ci'
 import { MdOutlineRemoveRedEye } from 'react-icons/md'
+import { sharedAtom } from '@/recoil/sharedAtom'
 
 
 type Props = {
@@ -13,11 +14,19 @@ type Props = {
     imageURL?: string
     time:string,
     userId:string,
+    candidateType:string
 }
 
-export default function SingleUser({imageURL,name,userId,time}: Props) {
+export default function SingleUser({imageURL,name,userId,time,candidateType}: Props) {
 
   const [modalState, setModalState] = useRecoilState(ModalAtom)
+  const [sharedState, setSharedState] = useRecoilState(sharedAtom);
+
+  const handleClick = () => {
+    setSharedState({...sharedState, selectedCandidateID:userId})
+    console.log(sharedState.candidates);
+    setModalState({isOpen:true,type:"moveTo"})
+  }
 
   return (
     <>
@@ -40,8 +49,12 @@ export default function SingleUser({imageURL,name,userId,time}: Props) {
 
               {/* PART RIGHT! */}
               <div className='flex flex-col items-center justify-between relative'>
-                <BsThreeDotsVertical onClick={() => setModalState({isOpen:true,type:"moveTo"})} className='cursor-pointer w-4 h-4 ml-auto text-[#1273eb]' />
-                <MdOutlineRemoveRedEye className=' w-4 h-4 ml-auto text-[#1273eb]' />
+                <BsThreeDotsVertical 
+                onClick={handleClick} 
+                className='cursor-pointer w-4 h-4 ml-auto text-[#1273eb]' 
+                />
+                <MdOutlineRemoveRedEye className=' w-4 h-4 ml-auto text-[#1273eb]' 
+                />
               </div>
             </div>
     </>
