@@ -134,10 +134,10 @@ const candidateSchema = new mongoose.Schema(
     },
     // CANDIDATE SKILLS!
     candidateSkills: {
-      type:[
+      type: [
         {
-          skillName:String,
-          points:Number,
+          skillName: String,
+          points: Number
         }
       ]
     },
@@ -153,9 +153,35 @@ const candidateSchema = new mongoose.Schema(
         }
       ]
     },
-    
 
+    // CANDIDATE TYPE!
+    candidateType: {
+      enum: [
+        'new',
+        'shortlisted',
+        'screening',
+        'interview',
+        'ceo',
+        'offered',
+        'hired',
+        'joining',
+        'confirmation'
+      ],
+      default: 'new',
+      type: String
+    },
+
+    // CANDIDATES JOBS!
+    candidateJobs: {
+      type: [
+        {
+          jobId: { type: mongoose.Schema.Types.ObjectId, ref: 'job' },
+          candidateType: String,
+        }
+      ]
+    }
   },
+
   {
     // TIMESTAMP OPTION FOR AUTO-GENERATING CREATED AND UPDATED TIMESTAMPS
     timestamps: true

@@ -21,7 +21,7 @@ export default function ExperienceDetails ({ data }: Props) {
       <div className='flex-1'>
         {/* HEADER! */}
         <HeaderWithAdd
-          showAdd={data.candidateExperiences.length}
+          showAdd={!!data.candidateExperiences.length}
           headerName={'Experiences'}
           type='experience'
         />
@@ -38,28 +38,11 @@ export default function ExperienceDetails ({ data }: Props) {
                 <EachExperience name={'Description'} value={e.jobDescription} />
               </div>
             ))}
-          {false && (
-            <>
-              {' '}
-              <p className='text-gray-500 text-lg'>No Experience added yet</p>
-              <button
-                onClick={() => {
-                  setModalState({ isOpen: true, type: 'experience' })
-                }}
-                className='flex gap-1 min-w-[100px] hover:opacity-50  rounded-md text-white  px-3 bg-[#1273eb] 
-  h-[40px] items-center justify-center '
-              >
-                <MdAdd className='w-4 h-4 -mt-1' />
-                <span className=''>Add</span>
-              </button>
-            </>
-          )}
         </section>
 
         {/* IF NO EXPERIENCE EXISTS FOR THE CANDIDATE */}
         {data.candidateExperiences.length === 0 && (
           <section className='p-3 py-5 w-full border-2 border-t-0 flex justify-between items-center p-5 flex-col gap-2'>
-            {true && (
               <>
                 {' '}
                 <p className='text-gray-500 text-lg'>No Experience added yet</p>
@@ -74,7 +57,6 @@ export default function ExperienceDetails ({ data }: Props) {
                   <span className=''>Add</span>
                 </button>
               </>
-            )}
           </section>
         )}
       </div>

@@ -62,8 +62,8 @@ export default function ResumesView ({ data }: Props) {
             <h2 className='text-lg font-bold'>Uploaded files</h2>
 
             <section className='flex flex-col gap-2'>
-              {data?.attachments?.length > 0 &&
-                data?.attachments?.map((eachFile: any, index: number) => (
+              {data?.resumes?.length > 0 &&
+                data?.resumes?.map((eachFile: any, index: number) => (
                   <EachFile index={index} key={index} eachFile={eachFile} />
                 ))}
             </section>

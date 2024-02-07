@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import CandidatesTabView from './CandidatesTabView'
+import CandidatesTabView from './CandidatesTabView/CandidatesTabView'
 import SummaryTabView from './Summary/SummaryTabView'
 import AttachmentsView from './AttachmentsView/AttachmentsView'
 import ReportsView from './Reports/ReportsView'
