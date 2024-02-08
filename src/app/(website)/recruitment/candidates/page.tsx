@@ -46,7 +46,7 @@ function ContainerHeader () {
         {/* SEARCH! */}
         <div className='flex-1 flex gap-2 items-center'>
           <h2 className='font-semibold '>Candidates List</h2>
-          <SearchInput />
+          <SearchInput placeholder="Search for candidates Names... Location... Current Position..." candidates />
         </div>
 
         {/* ACTIONS! */}

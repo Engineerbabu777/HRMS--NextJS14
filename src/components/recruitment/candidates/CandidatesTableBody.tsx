@@ -1,16 +1,22 @@
+'use client';
 import React from 'react'
 import CandidatesTableActions from './CandidatesTableActions'
 import { differenceInDays, format } from 'date-fns'
+import {useSearchParams} from 'next/navigation';
+import { filterCandidatesData } from '@/utils/filterCandidatesData';
 
 type Props = {
   data: any
 }
 
 export default function CandidatesTableBody ({ data }: Props) {
+
+  const searchValue = useSearchParams().get('search');
+
   return (
     <>
       <tbody className='flex-1 overflow-auto'>
-        {data?.map((candidate: any, index: number) => (
+        {filterCandidatesData(data,searchValue).map((candidate: any, index: number) => (
           <>
             <tr className='bg-white hover:bg-gray-50 border-b border-gray-200'>
               <th className=''>
