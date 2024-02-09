@@ -15,7 +15,7 @@ const tableHeadersName = [
   'Actions'
 ]
 
-export default function CandidatesTableHeader ({}: Props) {
+export default function TableHeader ({}: Props) {
   return (
     <>
       <thead className='bg-gray-100 '>
@@ -23,9 +23,9 @@ export default function CandidatesTableHeader ({}: Props) {
           <input type='checkbox' className='w-4 h-4 -mt-1' />
         </th>
         {tableHeadersName.map(name => (
-            <th className='' key={name}>
-              {name}
-            </th>
+          <th className='' key={name}>
+            {name}
+          </th>
         ))}
       </thead>
     </>

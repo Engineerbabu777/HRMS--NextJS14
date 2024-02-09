@@ -37,14 +37,14 @@ export default function Jobs ({ data }: Props) {
                 U
               </div>
               <div className='flex  flex-col'>
-                <p className='text-xl font-bold'>{job.jobId.jobName}</p>
+                <p className='text-xl font-bold'>{job?.jobId?.jobName}</p>
                 <p className='text-gray-400 font-semibold'>Misha Sohail</p>
               </div>
             </div>
 
             <div className=''>
               <button className='text-white bg-[#1273eb] px-3 py-1 rounded-full'>
-                {job.candidateType}
+                {job?.candidateType}
               </button>
             </div>
           </div>

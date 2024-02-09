@@ -1,6 +1,6 @@
 'use client';
 import React from 'react'
-import CandidatesTableActions from './CandidatesTableActions'
+import CandidatesTableActions from './TableActions'
 import { differenceInDays, format } from 'date-fns'
 import {useSearchParams} from 'next/navigation';
 import { filterCandidatesData } from '@/utils/filterCandidatesData';
@@ -9,7 +9,7 @@ type Props = {
   data: any
 }
 
-export default function CandidatesTableBody ({ data }: Props) {
+export default function TableBody ({ data }: Props) {
 
   const searchValue = useSearchParams().get('search');
 
@@ -52,7 +52,7 @@ export default function CandidatesTableBody ({ data }: Props) {
                   ? format(new Date(candidate?.createdAt), 'dd-MM-yyyy/hh:mm')
                   : null}
               </td>
-              <td className='flex gap-1 items-center mt-2'>
+              <td className='flex gap-1 items-center mt-1'>
                 <CandidatesTableActions candidateId={candidate._id} />
               </td>
             </tr>

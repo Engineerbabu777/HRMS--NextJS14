@@ -87,12 +87,16 @@ function SingleOption ({
   const [sharedState, setSharedState] = useRecoilState(sharedAtom)
 
   const handleUpdate = async()=>{
+
+    console.log({type,jobId,some:sharedState.selectedCandidateID})
 // UPDATE CANDIDATE!
 const response = await updateCandidateType(
   type,
   sharedState?.selectedCandidateID as string,
   jobId
 )
+
+console.log({response})
 
 if (response.status === 200) {
   setSharedState({

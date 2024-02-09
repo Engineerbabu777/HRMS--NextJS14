@@ -17,7 +17,7 @@ const defaultState:ModalInterface = {
 
 // CREATING STORE ATOM WITH RECOIL
 export const ModalAtom = atom<ModalInterface>({
-    key: 'sidebarState123456',
+    key: '65652gcasgf6w',
     default: defaultState
 }) 
 

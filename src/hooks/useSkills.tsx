@@ -37,6 +37,7 @@ export default function useSkills () {
     }
     // SUBMIT DATA!
     const response:any = await updateCandidateSkills(skills,Id);
+    // IF RESPONSE IS OK!
     if (response.status === 200) {
       setModalState({type:"",isOpen:false});
       toast.success("Updated")
@@ -48,17 +49,23 @@ export default function useSkills () {
     e: React.ChangeEvent<HTMLInputElement>,
     index: number
   ) => {
+    // EXTRACTING VALUES FROM TARGETED EVENT!
     const { name, value } = e.target
 
+    // MAKING DUPLICATE ARRAY OF SKILLS TO MANIPULATE!
     const updatedSkills = [...skills]
 
+
+    // UPDATING THE VALUE OF THE SPECIFIC SKILL!
     updatedSkills[index] = {
       ...updatedSkills[index],
       [name]: value
     }
 
+    // CLEARING THE ERROR!
     setError('')
 
+    // UPDATING SKILLS ARRAY!
     setSkills(updatedSkills)
   }
 

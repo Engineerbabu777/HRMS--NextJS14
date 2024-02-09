@@ -5,37 +5,20 @@ import React, { useState } from 'react'
 import { useFormik } from 'formik'
 import FormErrors from '@/components/recruitment/shared/FormErrors'
 import { validationSchemaForJob } from '@/utils/validateJob'
-import { createJob } from '@/actions/job/create-job'
-import toast from 'react-hot-toast'
+import useCreateForms from '@/hooks/useCreateForms'
+import Input from '@/components/recruitment/shared/Modals/Input/Input'
 
 type Props = {}
 
 export default function Page ({}: Props) {
-  const formik = useFormik({
-    initialValues: {
-      jobName: '',
-      jobLocation: '',
-      minimumSalary: 0,
-      maximumSalary: 0,
-      headCount: 0,
-      jobDescription: '',
-      contractDetails: ''
-    },
-    onSubmit: async (values, actions) => {
-      // WILL SUBMIT THIS FORM AND SAVE DATA TO BACKEND!
-      console.log({values})
-      // WILL SUBMIT THIS FORM AND SAVE DATA TO BACKEND!
-      const response:any = await createJob(values)
-      // IF THE USER WAS SUCCESSFULLY SUBMITTED!
-      if (response?.status === 200) {
-        toast.success('Added!')
-        formik.resetForm() // Reset the form after successful submission.
-      }
-    },
-    validationSchema: validationSchemaForJob
-  })
+  const { handleCreateJobFormSubmitted, initialJobValues } = useCreateForms()
 
-  console.log(formik.values);
+  // USING FORMIK HOOK TO HANDLE OUR FORM INPUT STATES!
+  const formik = useFormik({
+    initialValues: initialJobValues, // INITIAL VALUES!
+    onSubmit: handleCreateJobFormSubmitted, // FORM SUBMITTION FUNCTION!
+    validationSchema: validationSchemaForJob // VALIDATION SCHEMA!
+  })
 
   return (
     <>
@@ -59,62 +42,44 @@ export default function Page ({}: Props) {
             }}
           >
             <div className='flex gap-2 justify-between items-center'>
-              <label className='flex flex-col gap-1 flex-1'>
-                <p className='flex gap-1 '>
-                  <span className='font-bold'>JOB NAME</span>
-                  <span className='text-red-500'>*</span>
-                </p>
-                <input
-                  value={formik.values.jobName}
-                  onChange={formik.handleChange}
-                  name='jobName'
-                  className='p-2 rounded-md border max-w-[70%] border-gray-200 outline-[#1273eb] hover:outline-[#1273eb] '
-                  placeholder={'Software Engineer'}
-                />
-                {formik?.errors?.jobName && (
-                  <FormErrors error={formik?.errors?.jobName} />
-                )}
-              </label>
+              <Input
+                label='JOB NAME'
+                name='jobName'
+                placeholder='Enter Name for Job'
+                onChange={formik.handleChange}
+                value={formik.values.jobName}
+                classNames='!max-w-[70%]'
+                required
+                error={formik?.errors?.jobName || ''}
+                type='text'
+              />
 
-              <label className='flex flex-col gap-1 flex-1'>
-                <p className='flex gap-1 '>
-                  <span className='font-bold'>LOCATION</span>
-                  <span className='text-red-500'>*</span>
-                </p>
-                <select
-                  name='jobLocation'
-                  value={formik.values.jobLocation}
-                  onChange={formik.handleChange}
-                  className=' max-w-[70%] cursor-pointer p-2 rounded-md border border-gray-200 outline-[#1273eb] hover:outline-[#1273eb]'
-                >
-                  <option value={'lahore'}>Lahore</option>
-                  <option value={'karachi'}>Karachi</option>
-                  <option value={'istanbul'}>Istanbul</option>
-                </select>
-                {formik?.errors?.jobLocation && (
-                  <FormErrors error={formik?.errors?.jobLocation} />
-                )}
-              </label>
+              <Input
+                label='JOB LOCATION'
+                name='jobLocation'
+                placeholder='Enter Job Location'
+                onChange={formik.handleChange}
+                value={formik.values.jobLocation}
+                classNames='!max-w-[70%]'
+                required
+                error={formik?.errors?.jobLocation || ''}
+                type='text'
+              />
             </div>
 
             <div className='flex gap-2 justify-between items-center '>
-              <label className='flex flex-col gap-1 flex-1'>
-                <p className='flex gap-1 '>
-                  <span className='font-bold'>HEADTCOUNT</span>
-                  <span className='text-red-500'>*</span>
-                </p>
-                <input
-                  className='max-w-[70%] p-2 rounded-md border border-gray-200 outline-[#1273eb] hover:outline-[#1273eb] '
-                  placeholder={'Head Count'}
-                  name='headCount'
-                  type='number'
-                  value={formik.values.headCount}
-                  onChange={formik.handleChange}
-                />
-                {formik?.errors?.headCount && (
-                  <FormErrors error={formik?.errors?.headCount} />
-                )}
-              </label>
+              <Input
+                label='HeadCount'
+                name='headCount'
+                placeholder='Enter Number of positions Available for Job'
+                onChange={formik.handleChange}
+                value={formik.values.headCount}
+                classNames='!max-w-[70%]'
+                required
+                error={formik?.errors?.headCount || ''}
+                type='text'
+              />
+
               <label className='flex flex-col gap-1 flex-1'>
                 <p className='flex gap-1 '>
                   <span className='font-bold '>CONTRACT DETAILS</span>
@@ -137,23 +102,19 @@ export default function Page ({}: Props) {
             </div>
 
             <div className='flex gap-2 justify-between  '>
-              <label className='flex flex-col gap-1 flex-1'>
-                <p className='flex gap-1 '>
-                  <span className='font-bold'>DESCRIPTION</span>
-                  <span className='text-red-500'>*</span>
-                </p>
-                <textarea
-                  value={formik.values.jobDescription}
-                  onChange={formik.handleChange}
-                  name='jobDescription'
-                  rows={10}
-                  className='resize-none max-w-[70%] p-2 rounded-md border border-gray-200 outline-[#1273eb] hover:outline-[#1273eb] '
-                  placeholder={'Description About Job'}
-                />
-                {formik?.errors?.jobDescription && (
-                  <FormErrors error={formik?.errors?.jobDescription} />
-                )}
-              </label>
+              <Input
+                label='Job Description'
+                name='jobDescription'
+                placeholder='Enter Details about the job!'
+                onChange={formik.handleChange}
+                value={formik.values.jobDescription}
+                classNames='!max-w-[70%]'
+                required
+                error={formik?.errors?.jobDescription || ''}
+                type='text'
+                textarea
+              />
+
               <label className='flex flex-col gap-1 flex-1'>
                 <p className='flex gap-1 '>
                   <span className='font-bold '>SALARY RANGE</span>

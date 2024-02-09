@@ -5,7 +5,7 @@
 'use client'
 
 import React from 'react'
-import { MdEdit, MdOutlineRemoveRedEye } from 'react-icons/md'
+import { MdOutlineRemoveRedEye } from 'react-icons/md'
 import Link from 'next/link'
 
 type Props = {
@@ -17,7 +17,7 @@ export default function CandidatesTableActions ({ candidateId }: Props) {
     <>
       {/* VIEW */}
       <Link href={'/recruitment/candidates/view/' + candidateId}>
-        <MdOutlineRemoveRedEye className='w-5 h-5 text-[#1273eb] cursor-pointer' />
+        <MdOutlineRemoveRedEye className='w-4 h-4 text-[#1273eb] cursor-pointer' />
       </Link>
 
     </>

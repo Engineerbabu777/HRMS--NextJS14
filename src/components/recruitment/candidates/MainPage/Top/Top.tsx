@@ -1,10 +1,14 @@
+
+
+
+
 import React from 'react'
 import Link from 'next/link'
 import { MdAdd } from 'react-icons/md'
 
 type Props = {}
 
-export default function CandidatesHeader ({}: Props) {
+export default function TopCandidatesPage ({}: Props) {
   return (
     <>
       <header className='flex items-center justify-between px-6 mt-2 h-[52px]'>

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { storage } from '@/firebase/firebase';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import { updateJobWithPdf } from '@/actions/job/upload-pdf';
-import { ViewCandidateParamsType, ViewJobParamsType, ViewParamsType } from '@/types';
+import { ViewParamsType } from '@/types';
 import { useParams } from 'next/navigation';
 import { updateCandidateWithPdf } from '@/actions/candidate/updateCandidateResumesWithPdf';
 

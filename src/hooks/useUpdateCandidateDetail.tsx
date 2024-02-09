@@ -4,7 +4,7 @@ import toast from 'react-hot-toast'
 
 // WILL CHANGE THE TYPES LATER AS WELL!
 export default function useUpdateCandidateDetail () {
-  const [updating, setUpdating] = useState(false)
+  const [updating, setUpdating] = useState<boolean>(false)
 
   // FUNCTION THAT WILL USE SERVER ACTION FUNCTION AND UPDATE THE FIELD VALUE!
   const updateEditedField = async (
@@ -17,6 +17,7 @@ export default function useUpdateCandidateDetail () {
     // UPDATE THE DETAIL!
     const response: any = await updateDetailsField(name, value, ID)
 
+    // IF THE RESPONSE WAS IN SUCCESS!
     if (response?.success) {
       toast.success(response.message)
       setUpdating(false)
@@ -32,3 +33,6 @@ export default function useUpdateCandidateDetail () {
     updating
   }
 }
+
+
+// WILL MAKE A SINGLE HOOK FOR DETAILS HANDLING!

@@ -11,7 +11,12 @@ type Props = {
   placeholder: string,
   classNames?: string,
   textarea?: boolean,
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+  onChange: (
+    event:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLTextAreaElement>
+  ) => void,
+  rows?: number;
 }
 
 export default function Input ({
@@ -23,36 +28,44 @@ export default function Input ({
   value,
   error,
   textarea = false,
-  onChange
+  onChange,
+  classNames,
+  rows,
 }: Props) {
   return (
     <>
       <label className='flex flex-col gap-1 flex-1'>
         <p className='flex gap-1 w-fit cursor-pointer'>
+          {/* LABEL NAME! */}
           <span className='font-bold'>{label}</span>
+          {/* START FOR THE REQUIRED INPUTS! */}
           {required && <span className='text-red-500'>*</span>}
         </p>
+        {/* FOR INPUTS! */}
         {!textarea && (
           <input
             value={value}
             onChange={onChange}
             name={name}
             type={type}
-            className='p-2 rounded-md border w-full border-gray-200 outline-[#1273eb] hover:outline-[#1273eb] '
+            className={`${classNames} p-2 rounded-md border w-full border-gray-200 outline-[#1273eb] hover:outline-[#1273eb] `}
             placeholder={placeholder}
           />
         )}
+        {/* FOR TEXTAREA! */}
         {textarea && (
           <>
             <textarea
-            onChange={onChange}
+              onChange={onChange}
               name={name}
-              rows={5}
-              className='resize-none w-full p-2 rounded-md border border-gray-200 outline-[#1273eb] hover:outline-[#1273eb] '
+              rows={rows || 5}
+              className={` ${classNames} resize-none w-full p-2 rounded-md border border-gray-200 
+              outline-[#1273eb] hover:outline-[#1273eb] `}
               placeholder={placeholder}
             />
           </>
         )}
+        {/* IF SOME ERRORS OCCUR! */}
         {error && <FormErrors error={error} />}
       </label>
     </>
