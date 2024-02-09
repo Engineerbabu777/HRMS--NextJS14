@@ -21,7 +21,8 @@ export const updateDetailsField = async (
     // RETURN BACK THE RESPONSE!
     return {
       success: true,
-      message: 'updated Success!'
+      message: 'updated Success!',
+      status:200
     }
   } catch (error: any) {
     // RETURN BACK THE RESPONSE1

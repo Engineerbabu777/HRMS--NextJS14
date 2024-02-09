@@ -4,24 +4,30 @@ import React, { useState } from 'react'
 import { GoDotFill } from 'react-icons/go'
 
 type Props = {
-  jobId: string
+  isActive:boolean
 }
 
-export default function JobsTableStatus ({ jobId }: Props) {
-  const [open, setOpen] = useState(false)
+export default function JobsTableStatus ({ isActive,onhold }: Props) {
 
   return (
     <>
-      {/* BUTTON! */}
-      <button
-        onClick={() => setOpen(!open)}
-        className='rounded-md bg-green-200 text-green-500 p-1 px-2 justify-center flex items-center'
-      >
-        <GoDotFill className='text-green-500 w-4 h-4' />
-        Active
-      </button>
-      {/* OPTIONS! */}
-      {/* WILL ADD OPTIONS LATER! */}
+     {isActive && (
+        <div
+          className=' text-xs cursor-pointer p-1 rounded-md border border-[#1273eb] flex items-center w-fit text-[#1273eb]'
+        >
+          <GoDotFill className=' w-4 h-4' />
+          <p>Active</p>
+        </div>
+      )}
+
+      {!isActive && (
+        <div
+          className=' text-xs cursor-pointer p-1 rounded-md border border-red-500 flex items-center w-fit text-red-500'
+        >
+          <GoDotFill className=' w-4 h-4' />
+          <p>onHold</p>
+        </div>
+      )}
     </>
   )
 }

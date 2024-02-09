@@ -20,8 +20,6 @@ export default function CandidatesTableActions ({ candidateId }: Props) {
         <MdOutlineRemoveRedEye className='w-5 h-5 text-[#1273eb] cursor-pointer' />
       </Link>
 
-      {/* EDIT */}
-      <MdEdit className='w-5 h-5 text-[#1273eb] cursor-pointer' />
     </>
   )
 }

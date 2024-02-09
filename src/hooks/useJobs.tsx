@@ -19,7 +19,7 @@ export default function useJobs () {
   const fetchAllJobs = async () => {
     const response = await fetchJobs()
     if (response.status === 200) {
-      setJobs(response.jobs)
+      setJobs(response.jobs.filter(((j:any) => j.jobStatus !== "onhold")))
     }
   }
 
