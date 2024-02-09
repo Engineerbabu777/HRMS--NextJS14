@@ -4,7 +4,7 @@ import { DBConnect } from '@/database/DBConnect'
 import { CandidateTypes } from '@/types'
 import { Candidate } from '@/models/candidate.model'
 
-export const fetchCandidates = async (jobId: string | undefined) => {
+export const fetchCandidates = async (jobId?: string | undefined) => {
   try {
     // CONNECT TO DATABASE!
     await DBConnect()
