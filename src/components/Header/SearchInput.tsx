@@ -6,12 +6,14 @@ import { useSearchParams, useRouter, usePathname } from 'next/navigation'
 type Props = {
   className?: string,
   placeholder: string,
-  candidates?: boolean
+  candidates?: boolean,
+  jobs?: boolean
 }
 export default function SearchInput ({
   className = '',
   placeholder = 'Search by Name, Job, Email...',
-  candidates = false
+  candidates = false,
+  jobs=false
 }: Props) {
   const router = useRouter()
   const searchParams = useSearchParams()
@@ -20,6 +22,17 @@ export default function SearchInput ({
   const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     // IF THE CHANGE WAS FOR CANDIDATES!
     if (candidates) {
+      if (event.target.value.length > 0) {
+        const currentParams = new URLSearchParams(searchParams.toString())
+        currentParams.set('search', event.target.value)
+        router.push(`${pathname}?${currentParams}`)
+      } else {
+        router.push(pathname)
+      }
+    }
+
+    // IF THE CHANGE WAS FOR JOBS!
+    if (jobs) {
       if (event.target.value.length > 0) {
         const currentParams = new URLSearchParams(searchParams.toString())
         currentParams.set('search', event.target.value)

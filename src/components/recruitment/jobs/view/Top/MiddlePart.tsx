@@ -4,6 +4,8 @@ import { MdLocationOn } from 'react-icons/md'
 import { FaDollarSign } from 'react-icons/fa'
 import { GoDotFill } from 'react-icons/go'
 import { FaCaretDown } from 'react-icons/fa'
+import JobStatus from './JobStatus'
+import HiringSideStatus from './JobSourcing'
 
 type Props = {
   data:any
@@ -25,9 +27,12 @@ export default function MiddlePart ({data}: Props) {
             <h2 className='text-[#1273eb] font-bold text-3xl'>
               {data.jobName}
             </h2>
-            <p className='bg-[#F3B95F] text-white  text-sm font-semibold rounded-full px-4 py-1'>
+            {data.jobStatus === 'onhold' && <p className='bg-[#F3B95F] text-white  text-sm font-semibold rounded-full px-4 py-1'>
               Unpublished
-            </p>
+            </p>}
+            {data.jobStatus === 'active' && <p className='bg-green-500 text-white  text-sm font-semibold rounded-full px-4 py-1'>
+              Published
+            </p>}
           </div>
 
           {/* LOCATION! */}
@@ -43,47 +48,11 @@ export default function MiddlePart ({data}: Props) {
           </div>
 
           {/* JOB STATUS */}
-          <div className='p-1 rounded-md border border-[#1273eb] flex items-center gap-1 w-fit text-[#1273eb]'>
-            <GoDotFill className=' w-6 h-6' />
-            <p>Active</p>
-            <FaCaretDown className=' w-5 h-5' />
-          </div>
+          <JobStatus data={data} />
         </div>
 
         {/* HIRING SIDE! */}
-        <section className='flex gap-2 items-center ml-auto'>
-          <div className='min-w-[100px] min-h-[80px] flex flex-col border'>
-            {/* TOP ! */}
-            <div className='text-white font-semibold text-center bg-green-500 py-1'>
-              Hired
-            </div>
-            {/* BOTTOM! */}
-            <div className='text-green-500 font-semibold text-center bg-white flex-grow flex items-center justify-center'>
-              0
-            </div>
-          </div>
-
-          <div className='min-w-[100px] min-h-[80px] flex flex-col border'>
-            {/* TOP ! */}
-            <div className='text-white font-semibold text-center bg-[#FF9843] py-1'>
-              In Pipeline
-            </div>
-            {/* BOTTOM! */}
-            <div className='text-[#FF9843] font-semibold text-center bg-white flex-grow flex items-center justify-center'>
-              0
-            </div>
-          </div>
-          <div className='min-w-[100px] min-h-[80px] flex flex-col border'>
-            {/* TOP ! */}
-            <div className='text-white font-semibold text-center bg-red-500 py-1'>
-              Dropped
-            </div>
-            {/* BOTTOM! */}
-            <div className='text-red-500 font-semibold text-center bg-white flex-grow flex items-center justify-center'>
-              0
-            </div>
-          </div>
-        </section>
+        <HiringSideStatus />
       </div>
     </>
   )

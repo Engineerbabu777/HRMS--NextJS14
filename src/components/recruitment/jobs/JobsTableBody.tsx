@@ -1,17 +1,23 @@
+'use client';
 import React from 'react'
 import JobsTableStatus from './JobsTableStatus'
 import JobTableActions from './JobTableActions'
 import { format, compareAsc } from 'date-fns'
+import { filterJobsData } from '@/utils/filterJobsData'
+import { useSearchParams } from 'next/navigation'
 
 type Props = {
   data: any
 }
 
 export default function JobsTableBody ({ data }: Props) {
+
+  const searchValue = useSearchParams().get('search');
+
   return (
     <>
       <tbody className='flex-1 overflow-auto'>
-        {data.map((job: any, index: number) => (
+        {filterJobsData(data,searchValue as string).map((job: any, index: number) => (
           <>
             <tr className='bg-white hover:bg-gray-50 border-b border-gray-200'>
               <th className=''>
@@ -23,7 +29,7 @@ export default function JobsTableBody ({ data }: Props) {
               <td className=''>Rs {job.minimumSalary}</td>
               <td className=''>Rs {job.maximumSalary}</td>
               <td className='relative'>
-                <JobsTableStatus jobId={job._id} />
+                <JobsTableStatus isActive={job?.jobStatus === "active"} />
               </td>
               <td className='text-xs font-semibold '>
                 {job.createdAt
